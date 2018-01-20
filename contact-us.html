@@ -28,85 +28,7 @@
 
 <!--header start-->
 <header id="header" class="Sticky">
-     <!-- Start Navigation -->
-        <nav class="navbar navbar-default navbar-fixed white no-background bootsnav">
-
-            <div class="container">
-                <!-- Start Atribute Navigation -->
-                <div class="attr-nav">
-                    <ul>
-                        
-                        <li class="side-menu"><a href="#"><i class="fa fa-bars"></i></a></li>
-                    </ul>
-                </div>
-                <!-- End Atribute Navigation -->
-
-                <!-- Start Header Navigation -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                    <a class="navbar-brand" href="./index.html">
-                        <img src="assets/imgs/logo-light.png" class="logo logo-display" alt="">
-                        <img src="assets/imgs/logo.png" class="logo logo-scrolled" alt="">
-                    </a>
-                </div>
-                <!-- End Header Navigation -->
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="navbar-menu">
-                    <ul class="nav navbar-nav navbar-right" data-in="" data-out="">
-						<li class="dropdown">
-                            <a href="index.html" >Home</a>
-						</li>
-                        <li id="topmenuitem">
-                            <a href="schedule.html">Schedule</a>
-                        </li>
-						<li class="topmenuitem">
-                            <a href="index.html">Register</a>
-                        </li>
-						<li class="topmenuitem">
-                            <a href="contact-us.html">Contact Us</a>
-                        </li>
-                        <li class="topmenuitem">
-                            <a href="venue.html">Venue</a>
-                        </li>
-						
-						
-                    </ul>
-                </div><!-- /.navbar-collapse -->
-            </div>
-
-            <!-- Start Side Menu -->
-            <div class="side">
-                <a href="#" class="close-side"><i class="fa fa-times"></i></a>
-                <div class="widget u-MarginTop50">
-                    <!--<h4 class="title">Shortlinks</h4>-->
-                    <ul class="link">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="schedule.html">Schedules</a></li>
-                        <li><a href="venue.html">Venue</a></li>
-                        <li><a href="contact-us.html">Contact</a></li>
-                    </ul>
-                </div>
-
-                <div class="widget">
-                    <!--<h5 class="title">Social Links</h5>-->
-                    <div class="social-links sl-default border-link round-link colored-link">
-                        <a href="https://www.facebook.com/AaltoSatellites/" class="facebook">
-                            <i class="fa fa-facebook"></i>
-                        </a>
-                        <a href="https://twitter.com/aaltosatellites" class="twitter">
-                            <i class="fa fa-twitter"></i>
-                        </a>
-                       
-                    </div>
-                </div>
-            </div>
-            <!-- End Side Menu -->
-        </nav>
-        <!-- End Navigation -->
-    <div class="clearfix"></div>
+     <div w3-include-html="header.html"></div>
 </header>
 <!--header end-->
 
@@ -213,11 +135,13 @@
 <script src="assets/vendor/jquery.countdown.min.js"></script>
 <script src="assets/vendor/swiper/js/swiper.min.js"></script>
 <script src="assets/js/main.js"></script>
+	<script src="https://www.w3schools.com/lib/w3.js"></script>
 <!-- endinject -->
  <!--google map-->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCVkU7YnGfown4_i_sm6X36HP2jWTv54&callback=initMap"> </script>
 
     <script>
+	w3.includeHTML();
         function initMap() {
             var location, map, marker;
 
