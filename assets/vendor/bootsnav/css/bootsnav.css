@@ -36,7 +36,6 @@ nav.navbar.bootsnav{
     -webkit-border-radius: 0px;
     -o-border-radius: 0px;
     border-radius: 0px;
-    background-color: #fff;
     border: none;
     border-bottom: solid 1px #e0e0e0;
     z-index: 100;
@@ -1410,6 +1409,8 @@ body.on-side .wrap-sticky nav.navbar.bootsnav.sticked{
     }
 
     nav.navbar.bootsnav.navbar-fixed .logo-scrolled{
+        margin-top: -10px !important;
+        height: 50px !important;
         display: block !important;
     }
 

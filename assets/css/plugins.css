@@ -749,6 +749,7 @@ body.on-side .wrap-sticky nav.navbar.bootsnav.sticked{
     nav.navbar.bootsnav.navbar-fixed.navbar-transparent .logo-scrolled,
     nav.navbar.bootsnav.navbar-fixed.no-background .logo-scrolled{
         display: none;
+        margin-top: -15px;
     }
 
     nav.navbar.bootsnav.navbar-fixed.navbar-transparent .logo-display,
