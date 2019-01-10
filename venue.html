@@ -154,16 +154,6 @@
     <!--about end-->
 
 
-    <!--map start-->
-    <div class="position-relative">
-        <div id="map" class="map-area"></div>
-        <div class="location-address u-BoxShadow40">
-            <img src="assets/imgs/logo.png" alt="" height="35"/>
-            <h4 class="u-MarginBottom10 u-MarginTop10 u-Weight700">17 - 18 January, 2018</h4>
-            <p>Dipoli<br/> Otakaari 24<br>02150 Espoo<br>Finland</p>
-        </div>
-    </div>
-    <!--map end-->
 
 
    <!--footer start-->
@@ -203,42 +193,5 @@
 	<script src="https://www.w3schools.com/lib/w3.js"></script>
     <!-- endinject -->
 
-  <!--google map-->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCVkU7YnGfown4_i_sm6X36HP2jWTv54&callback=initMap"> </script>
-
-    <script>
-	w3.includeHTML();
-        function initMap() {
-            var location, map, marker;
-
-            location = {lat:  60.185041, lng: 24.832465};
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: location,
-                zoom: 15,
-                scrollwheel:false
-            });
-            marker = new google.maps.Marker({
-                position: location,
-                map: map
-            });
-        }
-		
-		$(document).ready(function(){
-			$("a").on('click', function(event) {
-				if (this.hash !== "") {
-					event.preventDefault();
-					var hash = this.hash;
-					
-					if(hash == "#tab1" || hash == "#tab2")
-						return;
-					$('html, body').animate({
-						scrollTop: $(hash).offset().top
-						}, 800, function(){
-						window.location.hash = hash;
-				  });
-				} // End if
-			  });
-			});
-    </script>
 </body>
 </html>
