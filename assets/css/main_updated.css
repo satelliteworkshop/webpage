@@ -22,7 +22,7 @@ body {
     letter-spacing: 0;
     color: #000;
     background: #FBFAFB;
-    font-family: "Montserrat",sans-serif;
+    font-family: "Montserrat";
     font-size: 1rem;
     line-height: 1.4
 }
@@ -362,7 +362,7 @@ a:active,a:focus,a:hover {
 }
 
 .text-white,.text-white .btn-go:hover {
-    color: #fff
+    color: #0F2662
 }
 
 .text-white .text-muted,.text-white.text-muted {
@@ -890,8 +890,8 @@ ul.cart-list>li.total>.btn:focus,ul.cart-list>li.total>.btn:hover {
     -webkit-transition-property: color,border-color,background-color;
     transition-property: color,border-color,background-color;
     color: #fff;
-    border-color: #2C39DD;
-    background-color: #2C39DD
+    border-color: #0F2662;
+    background-color: #0F2662
 }
 
 .btn-primary.focus,.btn-primary:active:focus,.btn-primary:active:hover,.btn-primary:focus,.btn-primary:hover {
@@ -6079,7 +6079,7 @@ div[class*=col-].media-left {
 .u-BorderRadius4 {
     overflow: hidden;
     -webkit-border-radius: 4px;
-    border-radius: 4px
+    border-radius: 12px
 }
 
 .u-BorderRadius6,.u-Rounded {
@@ -6181,7 +6181,7 @@ div[class*=col-].media-left {
 }
 
 .bg-black-transparent {
-    background: rgba(0,0,0,.8)
+    background: rgba(0,0,0,.4)
 }
 
 @media screen and (max-width: 992px) {
