@@ -449,7 +449,7 @@ p.text-white a:active,p.text-white a:focus,p.text-white a:hover {
 .bg-primary--gradient {
     background: -webkit-gradient(linear,left top,right top,from(#2C39DD),to(#89B7E7));
     background: -webkit-linear-gradient(left,#2C39DD,#89B7E7);
-    background: linear-gradient(90deg,#2C39DD,#89B7E7);
+    background: linear-gradient(90deg,#a5a5a7,#c5d0dc);
     background-color: #2C39DD
 }
 
