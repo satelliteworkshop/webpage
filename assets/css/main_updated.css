@@ -328,6 +328,12 @@ a:active,a:focus,a:hover {
     max-height: 100px;
 }
 
+.footer-logo-big{
+    max-width: 160px;
+    max-height: 160px;
+    padding: 20px;
+}
+
 .footer-logo{
     max-width: 120px;
     max-height: 120px;
