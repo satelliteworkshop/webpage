@@ -344,7 +344,11 @@ a:active,a:focus,a:hover {
     max-height: 100px;
     padding: 10px;
 }
-
+.footer-logo-narrow{
+    max-width: 80px;
+    max-height: 80px;
+    padding: 10px;
+}
 .Split {
     display: inline-block;
     width: 40px;
