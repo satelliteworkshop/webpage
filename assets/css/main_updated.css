@@ -339,6 +339,11 @@ a:active,a:focus,a:hover {
     max-height: 100px;
     padding: 10px;
 }
+.footer-logo-wide{
+    max-width: 140px;
+    max-height: 100px;
+    padding: 10px;
+}
 
 .Split {
     display: inline-block;
