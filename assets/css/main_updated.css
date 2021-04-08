@@ -383,7 +383,7 @@ a:active,a:focus,a:hover {
 }
 
 .text-white,.text-white .btn-go:hover {
-    color: #0F2662
+    color: #ddd
 }
 
 .text-white .text-muted,.text-white.text-muted {
@@ -567,7 +567,7 @@ p.text-white a:active,p.text-white a:focus,p.text-white a:hover {
 nav.navbar.bootsnav ul.nav li.dropdown>ul.dropdown-menu {
     margin-top: 1px;
     border-color: transparent;
-    background-color: #2C39DD
+    background-color: #a5a5a7
 }
 
 nav.navbar.bootsnav ul.nav li.dropdown>ul.dropdown-menu li:hover>a {
