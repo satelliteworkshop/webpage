@@ -31,7 +31,9 @@
 <!--default palette 0b79f9 ff3e12 fff f90048 c60039 -->
      <!--header start-->
      <header id="header" class="Sticky">
-        <!-- Start Navigation -->
+        
+		
+		<!-- Start Navigation -->
                 <nav class="navbar navbar-default navbar-fixed white no-background bootsnav">
 
                     <div class="container">
@@ -118,6 +120,8 @@
                     <!-- End Side Menu -->
                 </nav>
                 <!-- End Navigation -->
+				
+				
                 <div class="clearfix"></div>    </header>
             <!--header end-->
 
@@ -213,10 +217,12 @@
 						<h3 class="u-MarginTop10 text-gray">Remote Sensing Days</h3>
 							<ul>
 								<li>Atmospheric remote sensing</li>
-								<li>SAR remote sensing</li>
-								<li>Remote sensing of Cryosphere</li>
+								<li>Microwave remote sensing</li>
+								<li>Remote sensing of Arctic</li>
 								<li>COVID-19 in remote sensed data</li>
-								<li>Remote sensing of forest</li>
+								<li>Green growth and remote sensing</li>
+								<li>AI solutions for EO</li>
+								<li>Sensing biodiversity</li>
 							</ul>
 						
 						</p>
@@ -359,44 +365,6 @@
     <script src="assets/js/main.js"></script>
 	<script src="https://www.w3schools.com/lib/w3.js"></script>
     <!-- endinject -->
-
-    <!--google map-->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCVkU7YnGfown4_i_sm6X36HP2jWTv54&callback=initMap"> </script>
-
-    <script>
-	w3.includeHTML();
-        function initMap() {
-            var location, map, marker;
-
-            location = {lat:  60.185041, lng: 24.832465};
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: location,
-                zoom: 15,
-                scrollwheel:false
-            });
-            marker = new google.maps.Marker({
-                position: location,
-                map: map
-            });
-        }
-
-		$(document).ready(function(){
-			$("a").on('click', function(event) {
-				if (this.hash !== "") {
-					event.preventDefault();
-					var hash = this.hash;
-
-					if(hash == "#tab1" || hash == "#tab2")
-						return;
-					$('html, body').animate({
-						scrollTop: $(hash).offset().top
-						}, 800, function(){
-						window.location.hash = hash;
-				  });
-				} // End if
-			  });
-			});
-    </script>
 
 </body>
 </html>
