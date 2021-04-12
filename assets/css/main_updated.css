@@ -620,7 +620,7 @@ nav.navbar.bootsnav.navbar-transparent.white--outline {
     background-color: transparent
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 1000px) {
     nav.navbar.bootsnav.navbar-transparent.white--outline {
         background-color:#fff
     }
