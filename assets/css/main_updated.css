@@ -322,11 +322,35 @@ a:active,a:focus,a:hover {
     }
 }
 
+.sponsor-logo{
+     max-width: 150px;
+    max-height: 100px;
+       padding: 15px;
+}
+
+.sponsor-logo-wide{
+     max-width: 200px;
+    max-height: 100px;
+       padding: 15px;
+}
+
+.sponsor-logo-narrow{
+     max-width: 120px;
+    max-height: 100px;
+       padding: 15px;
+}
 
 .organizer-logo{
-    max-width: 200px;
+    max-width: 180px;
     max-height: 100px;
+	padding: 20px;
 }
+.organizer-logo-wide{
+    max-width: 210px;
+    max-height: 100px;
+	padding: 20px;
+}
+
 
 .footer-logo-big{
     max-width: 140px;
