@@ -58,6 +58,13 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="navbar-menu">
                             <ul class="nav navbar-nav navbar-right" data-in="" data-out="">
+								<li class="dropdown">
+								<a href="index.html" class="dropdown-toggle" data-toggle="dropdown" >2021</a>
+									<ul class="dropdown-menu">
+										<li><a href="program2021.html" >Program 2021</a></li>
+										<li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdekQoJL8qFUXwkLxwdqTmwyHaxeSKbhDMUBXFjiHhsb89Lag/viewform" target="new">Registration</a></li>
+										<li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfl4WbmziNH1UNsWfU7GDAI8sWLoEmzgjY8t8zkhK3o5StxJA/viewform" target="new">Sponsor registration</a></li>
+									</ul>
                                 <li class="dropdown">
 								<a href="2020.html" class="dropdown-toggle" data-toggle="dropdown" >2020</a>
 									<ul class="dropdown-menu">
@@ -291,40 +298,6 @@
     <!--google map-->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCVkU7YnGfown4_i_sm6X36HP2jWTv54&callback=initMap"> </script>
 
-    <script>
-	w3.includeHTML();
-        function initMap() {
-            var location, map, marker;
-
-            location = {lat:  60.185041, lng: 24.832465};
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: location,
-                zoom: 15,
-                scrollwheel:false
-            });
-            marker = new google.maps.Marker({
-                position: location,
-                map: map
-            });
-        }
-
-		$(document).ready(function(){
-			$("a").on('click', function(event) {
-				if (this.hash !== "") {
-					event.preventDefault();
-					var hash = this.hash;
-
-					if(hash == "#tab1" || hash == "#tab2")
-						return;
-					$('html, body').animate({
-						scrollTop: $(hash).offset().top
-						}, 800, function(){
-						window.location.hash = hash;
-				  });
-				} // End if
-			  });
-			});
-    </script>
 
 </body>
 </html>
