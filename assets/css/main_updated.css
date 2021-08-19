@@ -478,6 +478,10 @@ p.text-white a:active,p.text-white a:focus,p.text-white a:hover {
     background-color: #353D4A
 }
 
+.bg-black {
+    background-color: #000
+}
+
 .bg-darker .btn-go,.bg-darker .btn-go:hover,.bg-darker .text-white,.bg-primary p {
     color: #fff
 }
