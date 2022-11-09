@@ -265,7 +265,7 @@ a {
     transition: none 258ms ease-out;
     -webkit-transition-property: all;
     transition-property: all;
-    color: #FFFFFF
+    color: #333
 }
 
 a:active,a:focus,a:hover {
