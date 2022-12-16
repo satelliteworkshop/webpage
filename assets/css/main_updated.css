@@ -3326,8 +3326,8 @@ div[class*=col-].media-left {
 }
 
 .social-links.solid-link a {
-    color: #000;
-    background: #fff;
+    color: #202124;
+    background: #dadce0;
     line-height: 35px
 }
 
