@@ -351,6 +351,12 @@ a:active,a:focus,a:hover {
 	padding: 20px;
 }
 
+.organizer-logo-high{
+    max-width: 210px;
+    max-height: 140px;
+	padding: 20px;
+}
+
 
 .footer-logo-big{
     max-width: 140px;
