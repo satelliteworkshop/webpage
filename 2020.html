@@ -58,14 +58,13 @@
 
 
                         <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="navbar-menu">                  
- 
-							<script>
-							$( "#navbar-menu" ).load( "index.html #navbar-menu" );
-							</script>
-							
-							
-                        </div>
+                        <div id="navbar-container"></div>
+
+                         <script>
+                         $(document).ready(function(){
+                             $("#navbar-container").load("index.html #navbar-menu");
+                         });
+                         </script>
 						<!-- /.navbar-collapse -->
 
 

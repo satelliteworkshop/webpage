@@ -27,6 +27,7 @@
     <meta property='og:title' content='Finnish Satellite Workshop 2023'/>
     <meta property='og:image' content='/assets/imgs/og_FSW2023.png'/>
     <meta property='og:description' content='Finnish Satellite Workshop is the biggest space technology meeting in Finland. It brings together space tech specialists from the region to discuss current topics in rapidly developing space field. The scope is set on New Space, small satellite missions, small satellite platform development, space science missions and instruments, downstream and applications and sustainable utilization of space, not forgetting also about collaboration and space politics.'/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 
 
@@ -56,22 +57,14 @@
                         <!-- End Header Navigation -->
 
                         <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="navbar-menu">                  
- 
-							<script>
-							$( "#navbar-menu" ).load( "index.html #navbar-menu" );
-							</script>
-							
-							
-                        </div>
-						<!-- /.navbar-collapse -->
-					
-						<!--Navigation bar-->
-	
+                        <div id="navbar-container"></div>
 
-						<!--end of Navigation bar-->
-						
-						
+                         <script>
+                         $(document).ready(function(){
+                             $("#navbar-container").load("index.html #navbar-menu");
+                         });
+                         </script>
+						<!-- /.navbar-collapse -->					
                     </div>
                     
                 </nav>
