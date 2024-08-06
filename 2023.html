@@ -61,9 +61,12 @@
                         <div id="navbar-container"></div>
 
                          <script>
-                         $(document).ready(function(){
-                             $("#navbar-container").load("index.html #navbar-menu");
-                         });
+                         $(document).ready(function() {
+                            $("#navbar-container").load("index.html #navbar-menu", function() {
+                                // The navbar relies on the "resize" event to set the layout, so we need to trigger that manually
+                                $(window).trigger('resize');
+                            });
+                        });
                          </script>
 						 
 						<!-- /.navbar-collapse -->

@@ -580,9 +580,28 @@ d.parent(".dropdown-menu").length&&(d=d.closest("li.dropdown").addClass("active"
         }
     };
     
+    
+
     // Initialize
     $(document).ready(function(){
         bootsnav.initialize();
+    });
+
+    $(document).on("initializeNavBar", function() {
+        bootsnav.hoverDropdown();
+        setTimeout(function(){
+            bootsnav.navbarSticky();
+        }, 500);
+        
+        // Toggle Bars
+        $(".navbar-toggle").each(function(){
+            $(".fa", this).removeClass("fa-times");
+            $(".fa", this).addClass("fa-bars");
+            $(this).removeClass("fixed");
+        });        
+        $(".navbar-collapse").removeClass("in");
+        $(".navbar-collapse").removeClass("on");
+        $(".navbar-collapse").removeClass("bounceIn");      
     });
     
     // Reset on resize
