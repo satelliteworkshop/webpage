@@ -3356,6 +3356,11 @@ div[class*=col-].media-left {
     background: #395799
 }
 
+.social-links.colored-hover a.facebook:hover,.social-links.colored-link a.linkedin {
+    border-color: #395799;
+    background: #395799
+}
+
 .social-links.colored-hover a.twitter:hover,.social-links.colored-link a.twitter {
     border-color: #19b2f5;
     background: #19b2f5
