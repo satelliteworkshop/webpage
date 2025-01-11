@@ -38,7 +38,7 @@ badgeForm.addEventListener('submit', (e) => {
             ctx.fillStyle = '#000';
             ctx.textAlign = textalign; // Options: 'left', 'right', 'center'
             ctx.fillText(name, textx, 240);
-			ctx.font = '30px Montserrat';
+			ctx.font = '24px Montserrat';
             ctx.fillText(title, textx, 280);
 			
 			ctx.font = '24px Montserrat';
