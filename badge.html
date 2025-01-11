@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="assets/imgs/favicon.png" />
 
-    <title>Author instructions</title>
+    <title>Badge</title>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
     <!-- inject:css -->
@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="assets/vendor/animate.css/animate.min.css">
     <link rel="stylesheet" href="assets/vendor/swiper/css/swiper.min.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cropperjs@1.5.13/dist/cropper.min.css">
     <link rel="stylesheet" href="assets/css/main_updated.css">
     <!-- endinject -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -71,7 +71,7 @@
     <!--page title start-->
     <section class="ImageBackground ImageBackground--overlay v-align-parent u-height350 u-BoxShadow40" data-overlay="0">
         <div class="ImageBackground__holder">
-            <img src="assets/imgs/banner/submission2021.png" alt=""/>
+            <img src="assets/imgs/banner/dashboard_2021.png" alt=""/>
         </div>
      
     </section>
@@ -86,50 +86,50 @@
             <div class="row">
                 <div class="col-sm-5">
 					
-				   <p><img class="img-responsive" src="assets/imgs/poster_presenter.png" alt=""/></p>
-                   <p><img class="img-responsive" src="assets/imgs/oral_presenter.png" alt=""/></p>
-				   <p><img class="img-responsive" src="assets/imgs/auditorium.png" alt=""/></p>
-					 
-					 
-					
-					 
-					 
+				   <p><img class="img-responsive" src="assets/imgs/badge/examplebadge.png" alt=""/></p>
+
                 </div>
 				
-				
-				            <div class="col-sm-7">
-                        <h1Author Guidelines</h1>
+	<div class="col-sm-7">
+                        
 
-    <h2>Oral Sessions</h2>
-    <ul>
-        <li>Oral presentations are 13 minutes long, with an additional 2 minutes allocated for speaker transitions.</li>
-        <li>Questions and answers will be possible only if time allows. For longer discussions, please use the coffee breaks.</li>
-        <li>There are no specific requirements for presentation graphics.</li>
-        <li>All oral presentations will be broadcast online to registered attendees during the conference.</li>
-        <li>Presentations must be uploaded to the designated computer via a provided link. We recommend uploading them at least one hour before your scheduled presentation.</li>
-        <li>Presentations can be linked to the program upon request.</li>
-        <li>Only PowerPoint and PDF formats are supported.</li>
-        <li>Use of personal laptops for presentations is not possible.</li>
-        <li>Upload links will be available during next week.</li>
-    </ul>
+    <h2>Generate your badge for social media</h2>
+    <div id="inputForm" style="display:block;">
+	<form id="badgeForm">
+        <label for="name">Name:    </label>
+        <input type="text" id="name" required><br><br>
 
-    <h2>Poster Sessions</h2>
-    <ul>
-        <li>Poster sessions will feature physical posters displayed on stands.</li>
-        <li>The recommended poster size is A1.</li>
-        <li>Presenters are responsible for setting up and removing their posters after the session.</li>
-        <li>There are no specific requirements for the poster’s graphical design or format.</li>
-        <li>A PDF version of the poster can be linked to the program upon request.</li>
-        <li>Upload links will be available during next week.</li>
-	</ul>
+        <label for="title">Affiliation:</label>
+        <input type="text" id="title"><br><br>
 		
-		    <h2>Online Presentations</h2>
-    <ul>
-        <li>Online presentations are possible</li>
-        <li>Online presentations will be given like normal Zoom presentations.</li>
-		<li>Your session technical staff will contact you and give presenter rights</li>
-    </ul>
+		<label for="role1">I am presenting at</label>
+		<input type="radio" id="role1" name="role" value="I AM PRESENTING AT"><br><br>
+		<label for="role2">I am participating</label>
+		<input type="radio" id="role2" name="role" value="I AM PARTICIPATING" checked><br><br>
 
+        <label for="imageUpload">Upload Image:</label>
+        <input type="file" id="imageUpload" accept="image/*"><br><br>
+
+        <button type="submit">Next</button>
+    </form>
+	</div>
+
+    <!-- Image preview for cropping -->
+   <div id="cropContainer" style="display:none;">
+    <h2>Crop Your Image</h2>
+    <div class="image-preview-container">
+        <img id="imagePreview" style="max-width: 100%; height: auto;">
+    </div>
+    <button id="cropBtn">Next</button>
+	</div>
+
+    <!-- Badge canvas and download button -->
+    <canvas id="badgeCanvas" width="600" height="851" hidden></canvas><br>
+	<p>
+    <button id="downloadBtn" hidden>Download Badge</button>
+    </p>
+    <script src="https://cdn.jsdelivr.net/npm/cropperjs@1.5.13/dist/cropper.min.js"></script>
+    <script src="badgegenerator.js"></script>
 
                 </div>
 
