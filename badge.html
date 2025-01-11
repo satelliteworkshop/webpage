@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="assets/vendor/magnific-popup/magnific-popup.css">
     <link rel="stylesheet" href="assets/vendor/animate.css/animate.min.css">
     <link rel="stylesheet" href="assets/vendor/swiper/css/swiper.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cropperjs@1.5.13/dist/cropper.min.css">
     <link rel="stylesheet" href="assets/css/main_updated.css">
     <!-- endinject -->
@@ -56,7 +56,7 @@
                              $("#navbar-container").load("index.html #navbar-menu");
                          });
                          </script>
-						 >
+						 
 						<!-- /.navbar-collapse -->					
                     </div>
                     
@@ -85,8 +85,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-5">
-					
-				   <p><img class="img-responsive" src="assets/imgs/badge/examplebadge.png" alt=""/></p>
+					<h2>Light theme example</h2>
+				   <p><img class="img-responsive" src="assets/imgs/badge/examplebadge_light.png" alt=""/></p>
+					<h2>Dark theme example</h2>
+				   <p><img class="img-responsive" src="assets/imgs/badge/examplebadge_dark.png" alt=""/></p>
+				   
 
                 </div>
 				
@@ -95,21 +98,25 @@
 
     <h2>Generate your badge for social media</h2>
     <div id="inputForm" style="display:block;">
+	<p> Give your name and affiliation </p>
 	<form id="badgeForm">
         <label for="name">Name:</label>
         <input type="text" id="name" required><br><br>
 
         <label for="title">Affiliation:</label>
         <input type="text" id="title"><br><br>
-		
-		<label for="role1">I am presenting at</label>
-		<input type="radio" id="role1" name="role" value="I AM PRESENTING AT"><br><br>
-		<label for="role2">I am participating</label>
-		<input type="radio" id="role2" name="role" value="I AM PARTICIPATING" checked><br><br>
 
-        <label for="imageUpload">Upload portret photo (optional):</label>
+        <label for="imageUpload">Upload a photo if you like</label>
         <input type="file" id="imageUpload" accept="image/*"><br><br>
-
+		<p> Select color scheme </p>
+		<label for="theme2">
+		<input type="radio" id="theme2" name="colorTheme" value="light" checked> Light theme
+		</label>	<br>
+		<label for="theme1">
+		<input type="radio" id="theme1" name="colorTheme" value="dark" default> Dark theme
+		</label><br>
+	
+		<br>
         <button type="submit">Next</button>
     </form>
 	</div>

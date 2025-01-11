@@ -8,6 +8,7 @@ const imagePreview = document.getElementById('imagePreview');
 const cropBtn = document.getElementById('cropBtn');
 
 let cropper; // To hold the Cropper.js instance
+let namefontcolor = '#FFFFFF';
 
 // Form submit event
 badgeForm.addEventListener('submit', (e) => {
@@ -16,36 +17,46 @@ badgeForm.addEventListener('submit', (e) => {
     const name = document.getElementById('name').value;
     const title = document.getElementById('title').value;
     const imageUpload = document.getElementById('imageUpload').files[0];
-    const selectRole = document.querySelector('input[name="role"]:checked');
+    const selectTheme = document.querySelector('input[name="colorTheme"]:checked').value;
 	let textx = 300;
 	let textalign = 'center';
 	
 	inputForm.style.display = 'none';
-
-    // Draw the badge template
+	
+	// Draw the badge template
     const templateImage = new Image();
     templateImage.crossOrigin = 'anonymous'; // Enable CORS for the template image
-    templateImage.src = 'template.png';
-
+	
+	 if (selectTheme === 'dark'){
+		templateImage.src = 'template_dark.png';
+		namefontcolor = '#FFFFFF';
+	 } else {
+		 templateImage.src = 'template_light.png';
+		namefontcolor = '#000000';
+	 }
+		 
+	 
     templateImage.onload = function () {
         ctx.drawImage(templateImage, 0, 0, badgeCanvas.width, badgeCanvas.height);
-		if (imageUpload) {
-			textx = 320;
-			textalign = 'right';
-		}
+		//if (imageUpload) {
+		//	textx = 320;
+		//	textalign = 'right';
+		//}
         // Add text to the badge
-			ctx.font = 'bold 30px Montserrat';
-            ctx.fillStyle = '#000';
-            ctx.textAlign = textalign; // Options: 'left', 'right', 'center'
-            ctx.fillText(name, textx, 240);
-			ctx.font = '24px Montserrat';
-            ctx.fillText(title, textx, 280);
+		document.fonts.load('700 54px Montserrat').then(() => {
+			ctx.font = '700 52px Montserrat';
+            ctx.fillStyle = namefontcolor;
+            ctx.textAlign = 'center'; // Options: 'left', 'right', 'center'
+            ctx.fillText(name, textx, 290);
+			ctx.fillStyle = '#999999';
+			ctx.font = '500 36px Montserrat';
+            ctx.fillText(title, textx, 350);
 			
-			ctx.font = '24px Montserrat';
-            ctx.fillStyle = 'red';
-            ctx.textAlign = 'left'; // Options: 'left', 'right', 'center'
-            ctx.fillText(selectRole.value, 25, 60);
-			
+			//ctx.font = '24px Montserrat';
+            //ctx.fillStyle = 'red';
+            //ctx.textAlign = 'left'; // Options: 'left', 'right', 'center'
+            //ctx.fillText(selectRole.value, 25, 60);
+			});
 
         // If an image is uploaded, process it
         if (imageUpload) {
@@ -76,10 +87,10 @@ badgeForm.addEventListener('submit', (e) => {
                         // Draw the circular cropped image on the canvas
                         ctx.save();
                         ctx.beginPath();
-                        ctx.arc(450, 250, 100, 0, Math.PI * 2); // Create a circle (x, y, radius)
+                        ctx.arc(465, 130, 100, 0, Math.PI * 2); // Create a circle (x, y, radius)
                         ctx.closePath();
                         ctx.clip();
-                        ctx.drawImage(croppedImage, 350, 150, 200, 200);
+                        ctx.drawImage(croppedImage, 365, 30, 200, 200);
                         ctx.restore();
 
                         // Show the canvas and download button
