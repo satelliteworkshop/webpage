@@ -25,7 +25,7 @@ badgeForm.addEventListener('submit', (e) => {
 	
 	// Draw the badge template
     const templateImage = new Image();
-    //templateImage.crossOrigin = 'anonymous'; // Enable CORS for the template image
+    templateImage.crossOrigin = 'anonymous'; // Enable CORS for the template image
 	
 	 if (selectTheme === 'dark'){
 		templateImage.src = 'template_dark.png';
