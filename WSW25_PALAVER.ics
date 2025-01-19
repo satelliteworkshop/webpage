@@ -1,0 +1,56 @@
+BEGIN:VCALENDAR
+PRODID:-//zoom.us//iCalendar Event//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+CLASS:PUBLIC
+BEGIN:VTIMEZONE
+TZID:Europe/Helsinki
+LAST-MODIFIED:20240422T053451Z
+TZURL:https://www.tzurl.org/zoneinfo-outlook/Europe/Helsinki
+X-LIC-LOCATION:Europe/Helsinki
+BEGIN:DAYLIGHT
+TZNAME:EEST
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0300
+DTSTART:19700329T030000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZNAME:EET
+TZOFFSETFROM:+0300
+TZOFFSETTO:+0200
+DTSTART:19701025T040000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTAMP:20250117T154933Z
+DTSTART;TZID=Europe/Helsinki:20250121T083000
+DTEND;TZID=Europe/Helsinki:20250121T173000
+SUMMARY:Winter Satellite Workshop 2025 (PALAVER)
+RRULE:FREQ=DAILY;WKST=SU;UNTIL=20250123T153000Z;INTERVAL=1
+UID:ZOOM62799074828@zoom.us
+TZID:Europe/Helsinki
+DESCRIPTION:Topic: Winter Satellite Workshop 2025 (PALAVER)\nDescription:
+  The Winter Satellite Workshop is the largest New Space meeting in Finla
+ nd\, Scandinavia and the Baltic countries. It brings together space tech
+  specialists\, scientists\, and students to discuss current topics in a 
+ rapidly developing space field.\nThe event is takin place in Finland\, 2
+ 1 - 23 January\, 2025. \n\nJoin from PC\, Mac\, iPad\, or Android:\nhttp
+ s://aalto.zoom.us/j/62799074828\n\nPhone one-tap:\n+46850520017\,\,62799
+ 074828# Sweden\n+46850539728\,\,62799074828# Sweden\n\nJoin via audio:\n
+ +46 8 5052 0017 Sweden\n+46 850 539 728 Sweden\n+46 8 4468 2488 Sweden\n
+ +46 8 5016 3827 Sweden\n+46 8 5050 0828 Sweden\n+46 8 5050 0829 Sweden\n
+ Webinar ID: 627 9907 4828\nInternational numbers available: https://aalt
+ o.zoom.us/u/ccuStoHyJs\n\n\nJoin from an H.323/SIP room system:\nH.323: 
+ 109.105.112.236 or 109.105.112.235\nMeeting ID: 627 9907 4828\nSIP: 6279
+ 9074828@109.105.112.236 or 62799074828@109.105.112.235\n
+LOCATION:https://aalto.zoom.us/j/62799074828
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+END:VCALENDAR
