@@ -6,6 +6,7 @@ const cropContainer = document.getElementById('cropContainer');
 const inputForm = document.getElementById('inputForm');
 const imagePreview = document.getElementById('imagePreview');
 const cropBtn = document.getElementById('cropBtn');
+// by Jaan Praks and ChatGPT
 
 let cropper; // To hold the Cropper.js instance
 let namefontcolor = '#FFFFFF';
