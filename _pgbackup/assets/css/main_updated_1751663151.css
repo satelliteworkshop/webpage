@@ -118,13 +118,10 @@ hr {
     }
 }
 
-body p.logo-text {
+.logo-text {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 700 !important;
-    line-height: 0.8;
-    font-size: 70px;
-    font-weight: bold;
-    color: white;
+    line-height: 0.5;
+    font-size: 18px;
 }
 
 .text-gray {
