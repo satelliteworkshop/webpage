@@ -12,8 +12,8 @@ let cropper; // To hold the Cropper.js instance
 let namefontcolor = '#FFFFFF';
 
 // Form submit event
-badgeForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+ badgeForm.addEventListener('submit', (e) => {
+//    e.preventDefault();
 
     const name = document.getElementById('name').value;
     const title = document.getElementById('title').value;
