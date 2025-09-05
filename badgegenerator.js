@@ -18,7 +18,7 @@ badgeForm.addEventListener('submit', (e) => {
     const name = document.getElementById('name').value;
     const title = document.getElementById('title').value;
     const imageUpload = document.getElementById('imageUpload').files[0];
-    const selectTheme = document.querySelector('input[name="colorTheme"]:checked').value;
+    const selectTheme = document.querySelector('input[name="colorTheme"]').value;
 	let textx = 300;
 	let textalign = 'center';
 	
