@@ -12,13 +12,13 @@ let cropper; // To hold the Cropper.js instance
 let namefontcolor = '#FFFFFF';
 
 // Form submit event
- badgeForm.addEventListener('submit', (e) => {
+badgeForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
     const name = document.getElementById('name').value;
     const title = document.getElementById('title').value;
     const imageUpload = document.getElementById('imageUpload').files[0];
-    const selectTheme = document.querySelector('input[name="colorTheme"]').value;
+    const selectTheme = document.querySelector('input[name="colorTheme"]:checked').value;
 	let textx = 300;
 	let textalign = 'center';
 	
