@@ -104,16 +104,23 @@
     <h2>Generate your badge for social media</h2>
     <div id="inputForm" style="display:block;">
 	<p> Give your name and affiliation </p>
-	<form id="badgeForm" action="/submit" method="post">
+	<form id="badgeForm">
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br><br>
+        <input type="text" id="name" required><br><br>
 
         <label for="title">Affiliation:</label>
-        <input type="text" id="title" name="title"><br><br>
+        <input type="text" id="title"><br><br>
 
-        <label for="imageUpload">Upload your photo if you like to have it in place of the astronaut</label>
-        <input type="file" id="imageUpload" name="photo" accept="image/*"><br><br>
-		<input type="hidden" name="colorTheme" value="dark"> 
+        <label for="imageUpload">You can upload you photo to replace astronaut.</label>
+        <input type="file" id="imageUpload" accept="image/*"><br><br>
+		<p> Select color scheme </p>
+		
+		<input type="hidden" name="colorTheme" value="light" default> Light theme
+		</label>	
+		<label for="theme1">
+		<input type="radio" id="theme1" name="colorTheme" value="dark" checked> Dark theme
+		</label><br>
+		<input type="hidden" name="colorTheme" value="dark">
 		<br>
         <button type="submit">Next</button>
     </form>
