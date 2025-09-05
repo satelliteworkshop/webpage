@@ -51,7 +51,7 @@ badgeForm.addEventListener('submit', (e) => {
             ctx.fillText(name, textx, 310);
 			ctx.fillStyle = '#999999';
 			ctx.font = '500 36px Montserrat';
-            ctx.fillText(title, textx, 370);
+            ctx.fillText(title, textx, 390);
 			
 			//ctx.font = '24px Montserrat';
             //ctx.fillStyle = 'red';
