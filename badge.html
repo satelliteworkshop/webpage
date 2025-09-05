@@ -88,16 +88,12 @@
 
 
     <!--about start-->
-    <section class="u-PaddingTop200 u-PaddingBottom200  u-xs-PaddingBottom30 u-xs-PaddingTop30 u-sm-PaddingTop50 u-sm-PaddingBottom50 u-MarginBottom0 u-zIndex10 position-relative">
+    <section class="u-PaddingTop30 u-PaddingBottom30  u-xs-PaddingBottom30 u-xs-PaddingTop30 u-sm-PaddingTop50 u-sm-PaddingBottom50 u-MarginBottom0 u-zIndex10 position-relative">
         <div class="container">
             <div class="row">
                 <div class="col-sm-5">
 					<h2>Light theme example</h2>
 				   <p><img class="img-responsive" src="assets/imgs/badge/examplebadge_light.png" alt=""/></p>
-					<h2>Dark theme example</h2>
-				   <p><img class="img-responsive" src="assets/imgs/badge/examplebadge_dark.png" alt=""/></p>
-				   
-
 			</p>
 
                 </div>
@@ -117,13 +113,7 @@
 
         <label for="imageUpload">Upload a photo if you like</label>
         <input type="file" id="imageUpload" accept="image/*"><br><br>
-		<p> Select color scheme </p>
-		<label for="theme2">
-		<input type="radio" id="theme2" name="colorTheme" value="light" checked> Light theme
-		</label>	<br>
-		<label for="theme1">
-		<input type="radio" id="theme1" name="colorTheme" value="dark" default> Dark theme
-		</label><br>
+		<input type="hidden" id="theme1" name="colorTheme" value="dark" >	
 	
 		<br>
         <button type="submit">Next</button>
