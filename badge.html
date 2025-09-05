@@ -88,7 +88,7 @@
 
 
     <!--about start-->
-    <section class="u-PaddingTop30 u-PaddingBottom30  u-xs-PaddingBottom30 u-xs-PaddingTop30 u-sm-PaddingTop50 u-sm-PaddingBottom50 u-MarginBottom0 u-zIndex10 position-relative">
+    <section class="u-PaddingTop30 u-PaddingBottom300  u-xs-PaddingBottom30 u-xs-PaddingTop30 u-sm-PaddingTop50 u-sm-PaddingBottom50 u-MarginBottom0 u-zIndex10 position-relative">
         <div class="container">
             <div class="row">
                 <div class="col-sm-5">
@@ -113,7 +113,13 @@
 
         <label for="imageUpload">Upload a photo if you like</label>
         <input type="file" id="imageUpload" accept="image/*"><br><br>
-		<input type="hidden" id="theme1" name="colorTheme" value="dark" >	
+		<p> Select color scheme </p>
+		<label for="theme2">
+		<input type="radio" id="theme2" name="colorTheme" value="light" default> Light theme
+		</label>	<br>
+		<label for="theme1">
+		<input type="radio" id="theme1" name="colorTheme" value="dark" checked> Dark theme
+		</label><br>
 	
 		<br>
         <button type="submit">Next</button>
