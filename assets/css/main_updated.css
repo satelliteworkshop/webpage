@@ -404,19 +404,19 @@ a:hover {
 }
 
 .footer-logo {
-    max-width: 100px;
-    max-height: 100px;
+    max-width: 150px;
+    max-height: 50px;
     padding: 10px;
 }
 
 .footer-logo-wide {
-    max-width: 140px;
-    max-height: 100px;
+    max-width: 220px;
+    max-height: 50px;
     padding: 10px;
 }
 
 .footer-logo-narrow {
-    max-width: 80px;
+    max-width: 100px;
     max-height: 80px;
     padding: 10px;
 }
