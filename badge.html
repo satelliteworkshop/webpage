@@ -32,7 +32,7 @@
 			
 			
 <!-- Start Navigation -->
-                     <nav class="navbar navbar-default navbar-fixed white no-background bootsnav">
+                <nav class="navbar navbar-default navbar-fixed white no-background bootsnav">
 
                     <div class="container">
 
@@ -61,7 +61,7 @@
                     </div>
                     
                 </nav>
-                <!-- End Navigation -->
+<!-- End Navigation -->
 				
       <div class="clearfix"></div>    
 	  
@@ -108,19 +108,26 @@
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required><br><br>
 
-        <label for="title">Organization:</label>
+        <label for="title">Organisation:</label>
         <input type="text" id="title" name="title"><br><br>
 
-        <label for="imageUpload">You can upload your photo to replace the astronaut.</label>
-        <input type="file" id="imageUpload" name="imageUpload" accept="image/*"><br><br>
+        <label for="imageUpload">You can upload and crop your photo.</label>
+        <input type="file" id="imageUpload" name="imageUpload" accept="image/*">
+        <br>
 		
-		 <!-- <label for="theme1"> -->
-		<!-- <input type="radio" name="colorTheme" value="light" default> Light theme </label> -->	
-
-		<input type="hidden" id="theme1" name="colorTheme" value="dark">
-
+            <label for="roleTxt">Select text about your role</label> 
+		    <input type="radio" name="roleTxt" value="ATTENDING" checked> ATTENDING
+		    <input type="radio" name="roleTxt" value="PRESENTING"> Presenting
+            <input type="radio" name="roleTxt" value="TALKING"> Talking
 		<br>
-        <button type="submit">Next</button>
+
+            <label for="colorTheme">Select Color theme</label> 
+		    <input type="radio" name="colorTheme" value="light" checked> Light
+		    <input type="radio" name="colorTheme" value="dark"> Dark
+        <br>
+
+
+        <button type="submit">Proceed</button>
     </form>
 	</div>
 
@@ -130,18 +137,19 @@
     <div class="image-preview-container">
         <img id="imagePreview" style="max-width: 100%; height: auto;">
     </div>
-    <button id="cropBtn">Next</button>
+    <button id="cropBtn">Generate Badge</button>
 	</div>
 
     <!-- Badge canvas and download button -->
-    <canvas id="badgeCanvas" width="600" height="851" hidden></canvas><br>
+    <canvas id="badgeCanvas" width="600" height="750" hidden></canvas><br>
 	<p>
     <button id="downloadBtn" hidden>Download Badge</button>
+    
     </p>
     <script src="https://cdn.jsdelivr.net/npm/cropperjs@1.5.13/dist/cropper.min.js"></script>
     <script src="badgegenerator.js"></script>
 	
-	<p> Please use hashtag #WinterSatelliteWorkshop in social media! </p>
+	<p>The downloaded badge is saved to your Downloads folder. Find it there and post to LinkeIn or other channles. Please use hashtag #WinterSatelliteWorkshop in social media! </p>
 
                 </div>
 

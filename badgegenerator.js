@@ -8,8 +8,62 @@ const imagePreview = document.getElementById('imagePreview');
 const cropBtn = document.getElementById('cropBtn');
 // by Jaan Praks and ChatGPT
 
+// rounded rect for image crop on the badge
+function clipRoundRectPath(ctx, x, y, w, h, r) {
+  const radius = Math.min(r, w / 2, h / 2);
+  ctx.beginPath();
+  ctx.moveTo(x + radius, y);
+  ctx.lineTo(x + w - radius, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + radius);
+  ctx.lineTo(x + w, y + h - radius);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - radius, y + h);
+  ctx.lineTo(x + radius, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - radius);
+  ctx.lineTo(x, y + radius);
+  ctx.quadraticCurveTo(x, y, x + radius, y);
+  ctx.closePath();
+  ctx.clip();
+}
+
+// rounded rect for image crop on the badge
+function clipCircle(ctx, cx, cy, radius) {
+  ctx.beginPath();
+  ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+  ctx.closePath();
+  ctx.clip();
+}
+
+function drawImageInSlot(ctx, img, slot, shape = "roundRect") {
+  ctx.save();
+
+  if (shape === "circle") {
+    clipCircle(
+      ctx,
+      slot.x + slot.w / 2,
+      slot.y + slot.h / 2,
+      slot.w / 2
+    );
+  } else {
+    clipRoundRectPath(ctx, slot.x, slot.y, slot.w, slot.h, slot.r);
+  }
+
+  ctx.drawImage(img, slot.x, slot.y, slot.w, slot.h);
+  ctx.restore();
+}
+
+
+
 let cropper; // To hold the Cropper.js instance
 let namefontcolor = '#FFFFFF';
+let titlefontcolor = '#FFFFFF';
+
+const photoSlot = {
+  x: 150,
+  y: 140,
+  w: 300,
+  h: 300,
+  r: 24
+};
 
 // Form submit event
 badgeForm.addEventListener('submit', (e) => {
@@ -18,7 +72,8 @@ badgeForm.addEventListener('submit', (e) => {
     const name = document.getElementById('name').value;
     const title = document.getElementById('title').value;
     const imageUpload = document.getElementById('imageUpload').files[0];
-    const selectTheme = document.querySelector('input[name="colorTheme"]').value;
+    const selectTheme = document.querySelector('input[name="colorTheme"]:checked').value;
+    const role = document.querySelector('input[name="roleTxt"]:checked').value;
 	let textx = 300;
 	let textalign = 'center';
 	
@@ -31,9 +86,11 @@ badgeForm.addEventListener('submit', (e) => {
 	 if (selectTheme === 'dark'){
 		templateImage.src = 'template_dark.png';
 		namefontcolor = '#FFFFFF';
-	 } else {
+        titlefontcolor = '#FFFFFF';
+ 	 } else {
 		 templateImage.src = 'template_light.png';
-		namefontcolor = '#000000';
+		namefontcolor = '#201B50';
+        titlefontcolor = '#201B50';
 	 }
 		 
 	 
@@ -44,15 +101,29 @@ badgeForm.addEventListener('submit', (e) => {
 		//	textalign = 'right';
 		//}
         // Add text to the badge
-		document.fonts.load('700 54px Montserrat').then(() => {
-			ctx.font = '700 52px Montserrat';
+		document.fonts.load('1000 36px Montserrat').then(() => {
+			ctx.font = '1000 36px Montserrat';
             ctx.fillStyle = namefontcolor;
             ctx.textAlign = 'center'; // Options: 'left', 'right', 'center'
-            ctx.fillText(name, textx, 320);
-			ctx.fillStyle = '#999999';
-			ctx.font = '500 36px Montserrat';
-            ctx.fillText(title, textx, 370);
+            ctx.fillText(name.toUpperCase(), textx, 480);
+			ctx.fillStyle = titlefontcolor;
+			ctx.font = '700 26px Montserrat';
+            ctx.fillText(title.toUpperCase(), textx, 510);
 			
+            ctx.font = '1000 52px Montserrat';
+            ctx.fillText('I AM', 124, 561);
+            
+            if (role !== 'ATTENDING'){
+                ctx.font = '1000 52px Montserrat';
+                ctx.fillText('AT', 275, 679);}
+            
+            ctx.font = '1000 68px Montserrat';
+            ctx.fillText('WSW', 430, 690);
+
+
+            ctx.font = '1000 68px Montserrat';
+            ctx.fillText(role, textx, 625);
+
 			//ctx.font = '24px Montserrat';
             //ctx.fillStyle = 'red';
             //ctx.textAlign = 'left'; // Options: 'left', 'right', 'center'
@@ -77,27 +148,22 @@ badgeForm.addEventListener('submit', (e) => {
 
                 cropBtn.addEventListener('click', () => {
                     const croppedCanvas = cropper.getCroppedCanvas({
-                        width: 200,
-                        height: 200,
+                        width: 300,
+                        height: 300,
                     });
 
                     const croppedImage = new Image();
                     croppedImage.src = croppedCanvas.toDataURL();
 
                     croppedImage.onload = function () {
-                        // Draw the circular cropped image on the canvas
-                        ctx.save();
-                        ctx.beginPath();
-                        ctx.arc(465, 130, 100, 0, Math.PI * 2); // Create a circle (x, y, radius)
-                        ctx.closePath();
-                        ctx.clip();
-                        ctx.drawImage(croppedImage, 365, 30, 200, 200);
-                        ctx.restore();
-
+                        // Draw the cropped image on the canvas
+                       
+                        drawImageInSlot(ctx, croppedImage, photoSlot, "roundRect");
                         // Show the canvas and download button
                         badgeCanvas.hidden = false;
                         downloadBtn.hidden = false;
                         cropContainer.style.display = 'none';
+                        
                     };
                 });
             };
@@ -105,6 +171,7 @@ badgeForm.addEventListener('submit', (e) => {
             // If no image is uploaded, show the canvas and download button immediately
             badgeCanvas.hidden = false;
             downloadBtn.hidden = false;
+            
         }
     };
 });
