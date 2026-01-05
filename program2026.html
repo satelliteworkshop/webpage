@@ -178,15 +178,11 @@
 			<a class="btn btn-primary text-uppercase" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQLgwwyOBKStLgbTwXDveOHcHhwQDXjcundFQvNosAcdLE--BQS8LqL6lZJh0cePbJkEkMPWccC6pj9/pubhtml?gid=1386481418" target="_blank">Thursday 22.1.2026</a> 
 			
 			<a class="btn btn-primary text-uppercase" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQLgwwyOBKStLgbTwXDveOHcHhwQDXjcundFQvNosAcdLE--BQS8LqL6lZJh0cePbJkEkMPWccC6pj9/pubhtml?gid=1238594049" target="_blank">Friday 23.1.2026</a> 
-
-
-
-
 	
 	<div class="tab-links">
        
 		<p> <h2>Hall Schedule</h2>
-		<a href="javascript:void(0)" onclick="switchTab('359131638')">Kaleva (main hall)</a>
+		<a href="javascript:void(0)" onclick="switchTab('916877290')">Kaleva (main hall)</a>
         <a href="javascript:void(0)" onclick="switchTab('2034189382')">Lumituuli</a>
         <a href="javascript:void(0)" onclick="switchTab('359131638')">Palaver</a>
 		<a href="javascript:void(0)" onclick="switchTab('720057856')">Takka</a>
@@ -202,21 +198,20 @@
     <iframe id="sheetFrame" class="sheet-iframe" frameborder="0" ></iframe>
 	 </p>
 	
-	 <script>
- 
-        // Define the default gid
-        const defaultGid = "2034189382"; // Replace with your default tab's gid
+        <script>
+            const baseUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQLgwwyOBKStLgbTwXDveOHcHhwQDXjcundFQvNosAcdLE--BQS8LqL6lZJh0cePbJkEkMPWccC6pj9/pubhtml";
+            const defaultGid = "916877290";
 
-        // Set the iframe's src to the default gid on page load
-        document.getElementById("sheetFrame").src = `https://docs.google.com/spreadsheets/d/e/2PACX-1vQLgwwyOBKStLgbTwXDveOHcHhwQDXjcundFQvNosAcdLE--BQS8LqL6lZJh0cePbJkEkMPWccC6pj9/pubhtml?gid={defaultGid}`;
+            function switchTab(gid) {
+                const iframe = document.getElementById("sheetFrame");
+                iframe.src = `${baseUrl}?gid=${gid}&single=false&widget=true&headers=false`;
+            }
 
-        // Function to switch tabs dynamically
-        function switchTab(gid) {
-            const iframe = document.getElementById('sheetFrame');
-            iframe.src = `https://docs.google.com/spreadsheets/d/e/2PACX-1vQLgwwyOBKStLgbTwXDveOHcHhwQDXjcundFQvNosAcdLE--BQS8LqL6lZJh0cePbJkEkMPWccC6pj9/pubhtml?gid=916877290#gid={gid}`;
-        }
- 
-    </script>
+            // load default after DOM is ready
+            document.addEventListener("DOMContentLoaded", () => {
+                switchTab(defaultGid);
+            });
+        </script>
 	
    	 
 	 
