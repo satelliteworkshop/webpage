@@ -113,7 +113,7 @@ badgeForm.addEventListener('submit', (e) => {
             ctx.font = '1000 52px Montserrat';
             ctx.fillText('I AM', 124, 561);
             
-            if (role !== 'ATTENDING'){
+            if (role == 'PRESENTING' || role == 'TALKING'){
                 ctx.font = '1000 52px Montserrat';
                 ctx.fillText('AT', 275, 679);}
             
