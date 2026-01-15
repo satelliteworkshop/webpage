@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Conference Upload</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 0px;
+    }
+     .header {
+    background: #20214C;
+    height: 70px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+    
+
+    h1 {
+      margin-bottom: 40px;
+    }
+    button {
+      font-size: 22px;
+      padding: 20px 40px;
+      margin: 15px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+ <div class="header">
+    <a class="navbar-brand" href="./index.html"><img src="assets/imgs/logo-light.png" alt="Logo" class="logo"></a>
+    </div>
+  <h1>Select conference day for uploading your presentation</h1>
+
+<p>Please indicate your name and lecture hall in file name. You can upload new version if needed.</p>
+
+  <button onclick="go('day1')">Tuesday 20.1.2026</button>
+  <button onclick="go('day2')">Wednesday 21.1.2026</button>
+  <button onclick="go('day3')">Thursday 22.1.2026</button>
+  <script>
+    const links = {
+      day1: "https://www.dropbox.com/request/ypcZFKhno3FDtQuZ9Lhs",
+      day2: "https://www.dropbox.com/request/2tY19OL0ebdoxrqiXN2c",
+      day3: "https://www.dropbox.com/request/79sV3bqJEjHPLRPTLtTc"
+    };
+
+    function go(day) {
+      window.location.href = links[day];
+    }
+  </script>
+
+</body>
+</html>
