@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Schedule Display</title>
+<style>
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#sheetFrame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+
+  transform: scale(1.3);
+  transform-origin: top left;
+
+  /* compensate so it still fills the screen */
+  width: 77%;
+  height: 77%;
+}
+</style>
+</head>
+<body>
+
+<iframe id="sheetFrame"></iframe>
+
+<script>
+const SHEET_ID = "2PACX-1vQLgwwyOBKStLgbTwXDveOHcHhwQDXjcundFQvNosAcdLE--BQS8LqL6lZJh0cePbJkEkMPWccC6pj9";
+const GID = "2034189382";
+
+// ranges for different times
+const MORNING_RANGE = "E3:J19";     // 00:00–12:29
+const AFTERNOON_RANGE = "E19:J33";  // 12:30–23:59
+
+function getRangeForNow() {
+  const now = new Date();
+  const hours = now.getHours();
+  const minutes = now.getMinutes();
+
+  // after 12:30 → afternoon
+  if (hours > 12 || (hours === 12 && minutes >= 30)) {
+    return AFTERNOON_RANGE;
+  }
+
+  // otherwise → morning (also after midnight)
+  return MORNING_RANGE;
+}
+
+function buildUrl() {
+  const range = getRangeForNow();
+  return `https://docs.google.com/spreadsheets/d/e/${SHEET_ID}/pubhtml?gid=${GID}&single=true&range=${range}&headers=false`;
+}
+
+function loadSheet() {
+  const iframe = document.getElementById("sheetFrame");
+  iframe.src = buildUrl();
+}
+
+// initial load
+loadSheet();
+
+// refresh every 10 minutes (600000 ms)
+setInterval(loadSheet, 10 * 60 * 1000);
+
+// safety reload exactly at midnight and 12:30
+function scheduleBoundaryReload() {
+  const now = new Date();
+  const next = new Date(now);
+
+  if (now.getHours() < 12 || (now.getHours() === 12 && now.getMinutes() < 30)) {
+    next.setHours(12, 30, 0, 0); // today 12:30
+  } else {
+    next.setHours(24, 0, 0, 0); // midnight
+  }
+
+  const delay = next - now;
+  setTimeout(() => {
+    loadSheet();
+    scheduleBoundaryReload();
+  }, delay);
+}
+
+scheduleBoundaryReload();
+</script>
+
+</body>
+</html>
