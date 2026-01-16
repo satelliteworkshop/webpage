@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Schedule Display</title>
+<style>
+html, body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Theme color is set from JS */
+:root { --hallColor: #38761D; }
+
+.header {
+  background: var(--hallColor);
+  height: 200px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+h1 {
+  margin-bottom: 40px;
+  margin-top: 140px;
+  color: white;
+  font-size: 78px;
+}
+
+#footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;               /* taller for logos */
+  background: var(--hallColor, #38761D);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 0 30px;
+  box-sizing: border-box;
+}
+
+#logoBar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 26px;
+  overflow: hidden;
+  transition: opacity 0.9s ease;
+}
+
+#logoBar img {
+  max-height: 50px;               /* <-- all logos scaled to same height */
+  max-width: 160px;                /* keep aspect ratio */
+  object-fit: contain;
+  display: block;
+}
+
+#footerText {
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+#sheetFrame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  transform: scale(1);
+  transform-origin: top left;
+}
+
+#clockBox {
+  position: fixed;
+  top: 50px;
+  right: 50px;
+  z-index: 9999;
+  text-align: right;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  background: rgba(0,0,0,0.6);
+  padding: 10px 16px;
+  border-radius: 12px;
+}
+
+#time {
+  font-size: 78px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+#date {
+  font-size: 30px;
+  opacity: 0.9;
+}
+</style>
+</head>
+
+<body>
+  <div class="header">
+    <a class="navbar-brand" href="../index.html">
+      <img src="../assets/imgs/logo-light.png" alt="Logo" class="logo">
+    </a>
+
+    <!-- hall name will be injected here -->
+    <h1 id="hallTitle">Hall</h1>
+  </div>
+
+  <div id="clockBox">
+    <div id="time"></div>
+    <div id="date"></div>
+  </div>
+
+  <iframe id="sheetFrame"></iframe>
+
+<script>
+/*** ==== HALL CONFIG ==== ***/
+const SHEET_ID = "2PACX-1vQT5fvbLMcmPjOYlJK5rzJS10bUf2SN3YAF9yedVOTebuiJadiH3mcJzDuIgsx__bL-DLe5GfS_tjsV";
+
+// Put the correct GID for Kaleva tab here:
+const HALLS = {
+  Lumituuli: {
+    name: "Lumituuli",
+    color: "#38761D",
+    gid: "0",
+    dateRanges: {
+      "2026-01-20": { morning: "E3:J19",  afternoon: "E19:J37" },
+      "2026-01-21": { morning: "K3:P19",  afternoon: "K19:P37" },
+      "2026-01-16": { morning: "Q3:V19",  afternoon: "Q19:V37" }
+    },
+    defaultRanges: { morning: "E3:J19", afternoon: "E19:J33" }
+  },
+
+  Kaleva: {
+    name: "Kaleva",
+    color: "#1d4ed8",
+    gid: "1222858891", // <-- TODO: replace with Kaleva tab gid
+    dateRanges: {
+      "2026-01-20": { morning: "E3:J19",  afternoon: "E19:J37" },
+      "2026-01-21": { morning: "K3:P19",  afternoon: "K19:P37" },
+      "2026-01-16": { morning: "Q3:V19",  afternoon: "Q19:V37" }
+    },
+    defaultRanges: { morning: "E3:J19", afternoon: "E19:J33" }
+  }
+};
+
+const FALLBACK_HALL = "Lumituuli";
+
+/*** ==== PARAM HANDLING ==== ***/
+function getParam(name) {
+  return new URLSearchParams(window.location.search).get(name);
+}
+
+const hallKeyRaw = getParam("hall") || FALLBACK_HALL;
+// Allow minor variations like ?hall=lumituuli
+const hallKey = Object.keys(HALLS).find(k => k.toLowerCase() === hallKeyRaw.toLowerCase()) || FALLBACK_HALL;
+const hall = HALLS[hallKey];
+
+/*** ==== APPLY HALL TO PAGE ==== ***/
+document.documentElement.style.setProperty("--hallColor", hall.color);
+
+const hallTitle = document.getElementById("hallTitle");
+if (hallTitle) hallTitle.textContent = hall.name;
+
+// Update <title> too
+document.title = `Schedule Display ${hall.name}`;
+
+/*** ==== RANGE LOGIC (DATE + TIME) ==== ***/
+function getTimeBlock(now) {
+  const h = now.getHours();
+  const m = now.getMinutes();
+  // afternoon starts at 12:30
+  return (h > 12 || (h === 12 && m >= 30)) ? "afternoon" : "morning";
+}
+
+function ymd(now) {
+  const y = now.getFullYear();
+  const mo = String(now.getMonth() + 1).padStart(2, "0");
+  const d = String(now.getDate()).padStart(2, "0");
+  return `${y}-${mo}-${d}`;
+}
+
+function getRangeForNow() {
+  const now = new Date();
+  const dateKey = ymd(now);
+  const timeBlock = getTimeBlock(now);
+
+  const rangesForToday = hall.dateRanges[dateKey] || hall.defaultRanges;
+  return rangesForToday[timeBlock];
+}
+
+function buildUrl() {
+  const range = getRangeForNow();
+  return `https://docs.google.com/spreadsheets/d/e/${SHEET_ID}/pubhtml?gid=${hall.gid}&single=true&range=${range}&headers=false`;
+}
+
+function loadSheet() {
+  const iframe = document.getElementById("sheetFrame");
+  if (iframe) iframe.src = buildUrl();
+}
+
+// initial load
+loadSheet();
+
+// refresh every 10 minutes
+setInterval(loadSheet, 10 * 60 * 1000);
+
+// reload exactly at 12:30 and midnight (boundary changes)
+function scheduleBoundaryReload() {
+  const now = new Date();
+  const next = new Date(now);
+
+  if (now.getHours() < 12 || (now.getHours() === 12 && now.getMinutes() < 30)) {
+    next.setHours(12, 30, 0, 0);
+  } else {
+    next.setHours(24, 0, 0, 0);
+  }
+
+  setTimeout(() => {
+    loadSheet();
+    scheduleBoundaryReload();
+  }, next - now);
+}
+scheduleBoundaryReload();
+
+/*** ==== CLOCK ==== ***/
+function updateClock() {
+  const now = new Date();
+  const time = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: false });
+  const date = now.toLocaleDateString([], { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+
+  const t = document.getElementById("time");
+  const d = document.getElementById("date");
+  if (t) t.textContent = time;
+  if (d) d.textContent = date;
+}
+updateClock();
+setInterval(updateClock, 60000);
+
+
+const LOGOS = [
+  "../assets/imgs/sponsors/messukeskus.png",
+  "../assets/imgs/sponsors/Nanovac.png",
+  "../assets/imgs/sponsors/exolaunch.png",
+  "../assets/imgs/sponsors/elisa.png",
+  "../assets/imgs/sponsors/bittium.png",
+  "../assets/imgs/sponsors/Espoo.png",
+  "../assets/imgs/sponsors/kuvaspace.png",
+  "../assets/imgs/sponsors/vtt.png",
+  "../assets/imgs/sponsors/spacedenmark_white.png",
+  "../assets/imgs/sponsors/cgi.png",
+  "../assets/imgs/sponsors/KSAT.png",
+  "../assets/imgs/sponsors/isis.png",
+  "../assets/imgs/sponsors/expando.png",
+  "../assets/imgs/sponsors/Lulea.png",
+  "../assets/imgs/sponsors/glenair.png",
+  "../assets/imgs/sponsors/COMSOL.png",
+  "../assets/imgs/sponsors/huld.png",
+  "../assets/imgs/sponsors/alter.png",
+  "../assets/imgs/sponsors/EUSI.png",
+  "../assets/imgs/sponsors/harp.png",
+  "../assets/imgs/sponsors/ASRO.png",
+  "../assets/imgs/sponsors/Aurora.png",
+  "../assets/imgs/sponsors/RW.png",
+  "../assets/imgs/sponsors/esabic2.png",
+  "../assets/imgs/sponsors/TartuObservatory.png",
+  "../assets/imgs/sponsors/quanscient.png",
+  "../assets/imgs/sponsors/da.png",
+  "../assets/imgs/sponsors/airbus.png",
+  "../assets/imgs/sponsors/SYKE.png",
+  "../assets/imgs/sponsors/iceye.png",
+  "../assets/imgs/sponsors/xiphera.png",
+  "../assets/imgs/sponsors/nanoavionics.png",
+  "../assets/imgs/sponsors/itsensing.png",
+  "../assets/imgs/sponsors/fzsolutions.png",
+  "../assets/imgs/sponsors/RFshamaanit.png",
+  "../assets/imgs/sponsors/crystalspace.png",
+  "../assets/imgs/sponsors/reorbit.png",
+  "../assets/imgs/sponsors/finca.png",
+  "../assets/imgs/sponsors/EUSPA.png",
+  "../assets/imgs/sponsors/beyondgravity.png",
+  "../assets/imgs/sponsors/anritsu.png",
+  "../assets/imgs/sponsors/SAAB.png",
+  "../assets/imgs/sponsors/UNIBAP.png",
+  "../assets/imgs/sponsors/Verkotan.png",
+  "../assets/imgs/sponsors/cubespace.png",
+  "../assets/imgs/sponsors/FMI.png",
+  "../assets/imgs/sponsors/tilebox.png",
+  "../assets/imgs/sponsors/SSC2.png",
+  "../assets/imgs/sponsors/SGO.png",
+  "../assets/imgs/sponsors/KSC.png",
+  "../assets/imgs/sponsors/paleblue.png",
+  "../assets/imgs/sponsors/dhv.png",
+  "../assets/imgs/sponsors/HEINONEN.png",
+  "../assets/imgs/sponsors/Diamant.png",
+  "../assets/imgs/sponsors/esaphilab.png",
+  "../assets/imgs/sponsors/LAUREA.png",
+  "../assets/imgs/sponsors/foresail.png",
+  "../assets/imgs/sponsors/spaceconomy.png"
+];
+
+
+const LOGOS_PER_PAGE = 10;
+const ROTATE_MS = 15000;
+
+let logoIndex = 0;
+
+function renderLogos() {
+  const bar = document.getElementById("logoBar");
+  if (!bar || LOGOS.length === 0) return;
+
+  // fade out
+  bar.style.opacity = 0;
+
+  setTimeout(() => {
+    bar.innerHTML = "";
+
+    for (let i = 0; i < Math.min(LOGOS_PER_PAGE, LOGOS.length); i++) {
+      const img = document.createElement("img");
+      img.src = LOGOS[(logoIndex + i) % LOGOS.length];
+      img.alt = "";
+      img.loading = "eager"; // signage: prefer immediate display
+      bar.appendChild(img);
+    }
+
+    logoIndex = (logoIndex + LOGOS_PER_PAGE) % LOGOS.length;
+
+    // fade in
+    bar.style.opacity = 1;
+  }, 900); // match CSS transition
+}
+
+// initial draw
+renderLogos();
+
+// rotate every 15 seconds
+setInterval(renderLogos, ROTATE_MS);
+
+
+</script>
+
+<div id="footer">
+  <div id="logoBar" aria-label="Partners"></div>
+  <!-- optional text, keep if you want -->
+ 
+</div>
+</body>
+</html>
