@@ -18,17 +18,17 @@ html, body {
 
 .header {
   background: var(--hallColor);
-  height: 200px;
+  height: 180px;
   width: 100%;
   display: flex;
   align-items: center;
-  padding: 20px;
+  padding: 30px;
   box-sizing: border-box;
 }
 
 h1 {
   margin-bottom: 40px;
-  margin-top: 140px;
+  margin-top: 40px;
   color: white;
   font-size: 78px;
 }
@@ -84,10 +84,10 @@ h1 {
 
 #clockBox {
   position: fixed;
-  top: 50px;
+  top: 30px;
   right: 50px;
   z-index: 9999;
-  text-align: right;
+  text-align: left;
   font-family: Arial, Helvetica, sans-serif;
   color: white;
   background: rgba(0,0,0,0.6);
@@ -138,7 +138,7 @@ const HALLS = {
     dateRanges: {
       "2026-01-20": { morning: "E3:J19",  afternoon: "E19:J37" },
       "2026-01-21": { morning: "K3:P19",  afternoon: "K19:P37" },
-      "2026-01-16": { morning: "Q3:V19",  afternoon: "Q19:V37" }
+      "2026-01-22": { morning: "Q3:V19",  afternoon: "Q19:V37" }
     },
     defaultRanges: { morning: "E3:J19", afternoon: "E19:J33" }
   },
@@ -150,13 +150,61 @@ const HALLS = {
     dateRanges: {
       "2026-01-20": { morning: "E3:J19",  afternoon: "E19:J37" },
       "2026-01-21": { morning: "K3:P19",  afternoon: "K19:P37" },
-      "2026-01-16": { morning: "Q3:V19",  afternoon: "Q19:V37" }
+      "2026-01-22": { morning: "Q3:V19",  afternoon: "Q19:V37" }
+    },
+    defaultRanges: { morning: "E3:J19", afternoon: "E19:J33" }
+  },
+
+    Takka: {
+    name: "Takka",
+    color: "#8C2000",
+    gid: "1763990002", // <-- TODO: replace with tab gid
+    dateRanges: {
+      "2026-01-20": { morning: "E3:J19",  afternoon: "E19:J37" },
+      "2026-01-21": { morning: "K3:P19",  afternoon: "K19:P37" },
+      "2026-01-22": { morning: "Q3:V19",  afternoon: "Q19:V37" }
+    },
+    defaultRanges: { morning: "E3:J19", afternoon: "E19:J33" }
+  },
+
+    Palaver: {
+    name: "Palaver",
+    color: "#FF9900",
+    gid: "370878168", // <-- TODO: replace with tab gid
+    dateRanges: {
+      "2026-01-20": { morning: "E3:J19",  afternoon: "E19:J37" },
+      "2026-01-21": { morning: "K3:P19",  afternoon: "K19:P37" },
+      "2026-01-22": { morning: "Q3:V19",  afternoon: "Q19:V37" }
+    },
+    defaultRanges: { morning: "E3:J19", afternoon: "E19:J33" }
+  },
+    Klondyke: {
+    name: "Klondyke",
+    color: "#674EA7",
+    gid: "1901946327", // <-- TODO: replace with tab gid
+    dateRanges: {
+      "2026-01-20": { morning: "E3:J19",  afternoon: "E19:J37" },
+      "2026-01-21": { morning: "K3:P19",  afternoon: "K19:P37" },
+      "2026-01-22": { morning: "Q3:V19",  afternoon: "Q19:V37" }
+    },
+    defaultRanges: { morning: "E3:J19", afternoon: "E19:J33" }
+  },
+
+    PopUp: {
+    name: "Pop-Up Stage",
+    color: "#741B47",
+    gid: "1988847104", // <-- TODO: replace with tab gid
+    dateRanges: {
+      "2026-01-20": { morning: "E3:J19",  afternoon: "E19:J37" },
+      "2026-01-21": { morning: "K3:P19",  afternoon: "K19:P37" },
+      "2026-01-22": { morning: "Q3:V19",  afternoon: "Q19:V37" }
     },
     defaultRanges: { morning: "E3:J19", afternoon: "E19:J33" }
   }
+
 };
 
-const FALLBACK_HALL = "Lumituuli";
+const FALLBACK_HALL = "Kaleva";
 
 /*** ==== PARAM HANDLING ==== ***/
 function getParam(name) {
@@ -312,7 +360,7 @@ const LOGOS = [
 ];
 
 
-const LOGOS_PER_PAGE = 10;
+const LOGOS_PER_PAGE = 8;
 const ROTATE_MS = 15000;
 
 let logoIndex = 0;
