@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Schedule Display</title>
+<title>Schedule Display LUMITUULI</title>
 <style>
 html, body {
     font-family: Arial, sans-serif;
@@ -15,32 +15,60 @@ html, body {
 }
 
     .header {
-    background: #10c98e;
+    background: #38761D;
     height: 200px;
     width: 100%;
     display: flex;
     align-items: center;
     padding: 0 0px;
     box-sizing: border-box;
+ 
+     
+ 
   }
 
       h1 {
       margin-bottom: 40px;
       margin-top: 140px;
       color: white;
+      font-size:78px;
     }
+#footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+
+  background: #38761D;
+  /* or a solid color like: background:#1d4ed8; */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+ 
+}
+
+#footerText {
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
 
 #sheetFrame {
   width: 100%;
   height: 100%;
   border: 0;
 
-  transform: scale(1.3);
+  transform: scale(1);
   transform-origin: top left;
 
   /* compensate so it still fills the screen */
-  width: 77%;
-  height: 77%;
+  width: 100%;
+
 }
 
 #clockBox {
@@ -88,25 +116,44 @@ html, body {
 <iframe id="sheetFrame"></iframe>
 
 <script>
-const SHEET_ID = "2PACX-1vQLgwwyOBKStLgbTwXDveOHcHhwQDXjcundFQvNosAcdLE--BQS8LqL6lZJh0cePbJkEkMPWccC6pj9";
-const GID = "2034189382";
+const SHEET_ID = "2PACX-1vQT5fvbLMcmPjOYlJK5rzJS10bUf2SN3YAF9yedVOTebuiJadiH3mcJzDuIgsx__bL-DLe5GfS_tjsV";
+const GID = "0";
 
-// ranges for different times
-const MORNING_RANGE = "E3:J19";     // 00:00–12:29
-const AFTERNOON_RANGE = "E19:J33";  // 12:30–23:59
+/*
+  Configure your 3 literal dates here (YYYY-MM-DD), each with morning + afternoon ranges.
+  Also configure a DEFAULT range pair used on all other dates.
+*/
+const DATE_RANGES = {
+  "2026-01-20": { morning: "E3:J19",  afternoon: "E19:J37" },
+  "2026-01-21": { morning: "K3:P19", afternoon: "K19:P37" },
+  "2026-01-16": { morning: "Q3:V19", afternoon: "Q19:V37" }
+};
+
+// Shown when today is NOT one of the three dates above:
+const DEFAULT_RANGES = { morning: "E3:J19", afternoon: "E19:J33" };
+
+// Morning vs afternoon boundary
+function getTimeBlock(now) {
+  const h = now.getHours();
+  const m = now.getMinutes();
+  return (h > 12 || (h === 11 && m >= 20)) ? "afternoon" : "morning";
+}
+
+// YYYY-MM-DD in local time
+function ymd(now) {
+  const y = now.getFullYear();
+  const m = String(now.getMonth() + 1).padStart(2, "0");
+  const d = String(now.getDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
+}
 
 function getRangeForNow() {
   const now = new Date();
-  const hours = now.getHours();
-  const minutes = now.getMinutes();
+  const dateKey = ymd(now);
+  const timeBlock = getTimeBlock(now);
 
-  // after 12:30 → afternoon
-  if (hours > 12 || (hours === 12 && minutes >= 30)) {
-    return AFTERNOON_RANGE;
-  }
-
-  // otherwise → morning (also after midnight)
-  return MORNING_RANGE;
+  const rangesForToday = DATE_RANGES[dateKey] || DEFAULT_RANGES;
+  return rangesForToday[timeBlock];
 }
 
 function buildUrl() {
@@ -116,16 +163,16 @@ function buildUrl() {
 
 function loadSheet() {
   const iframe = document.getElementById("sheetFrame");
-  iframe.src = buildUrl();
+  if (iframe) iframe.src = buildUrl();
 }
 
 // initial load
 loadSheet();
 
-// refresh every 10 minutes (600000 ms)
+// refresh every 10 minutes
 setInterval(loadSheet, 10 * 60 * 1000);
 
-// safety reload exactly at midnight and 12:30
+// reload exactly at 12:30 and midnight (boundary changes)
 function scheduleBoundaryReload() {
   const now = new Date();
   const next = new Date(now);
@@ -136,39 +183,31 @@ function scheduleBoundaryReload() {
     next.setHours(24, 0, 0, 0); // midnight
   }
 
-  const delay = next - now;
   setTimeout(() => {
     loadSheet();
     scheduleBoundaryReload();
-  }, delay);
+  }, next - now);
 }
-
 scheduleBoundaryReload();
 
+// clock/date overlay (optional: requires elements with ids "time" and "date")
 function updateClock() {
   const now = new Date();
+  const time = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  const date = now.toLocaleDateString([], { weekday: "long", year: "numeric", month: "long", day: "numeric" });
 
-  const time = now.toLocaleTimeString([], {
-    hour: '2-digit',
-    minute: '2-digit'
-  });
-
-  const date = now.toLocaleDateString([], {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
-
-  document.getElementById("time").textContent = time;
-  document.getElementById("date").textContent = date;
+  const t = document.getElementById("time");
+  const d = document.getElementById("date");
+  if (t) t.textContent = time;
+  if (d) d.textContent = date;
 }
-
-updateClock();               // initial draw
-setInterval(updateClock, 60000); // update every second
-
-
+updateClock();
+setInterval(updateClock, 60000); // every minute
 </script>
 
+
+<div id="footer">
+  <div id="footerText">Today’s schedule • Welcome</div>
+</div>
 </body>
 </html>
