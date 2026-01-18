@@ -119,6 +119,19 @@ h1 {
   height: 100%;
   border: 0;
 }
+
+.floating-text {
+    position: absolute;
+    top: 80%;
+    left: 85%;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-family: sans-serif;
+    z-index: 10;
+    pointer-events: none; /* lets clicks go through to iframe */
+  }
 </style>
 </head>
 
@@ -130,7 +143,9 @@ h1 {
 
     <!-- hall name will be injected here -->
     <h1 id="hallTitle">Hall</h1>
+    
   </div>
+  
 
   <div id="clockBox">
     <div id="time"></div>
@@ -139,6 +154,10 @@ h1 {
 
 <div id="sheetWrapper">
   <iframe id="sheetFrame"></iframe>
+    <div class="floating-text" id="overlay">
+    Upload you presentation @<br>
+    https://spaceworkshop.fi/upload
+  </div>
 </div>
 
 
@@ -416,7 +435,9 @@ setInterval(renderLogos, ROTATE_MS);
 
 </script>
 
+
 <div id="footer">
+    
   <div id="logoBar" aria-label="Partners"></div>
   <!-- optional text, keep if you want -->
  
