@@ -58,10 +58,10 @@ let namefontcolor = '#FFFFFF';
 let titlefontcolor = '#FFFFFF';
 
 const photoSlot = {
-  x: 150,
-  y: 140,
-  w: 300,
-  h: 300,
+  x: 25,
+  y: 150,
+  w: 550,
+  h: 550,
   r: 24
 };
 
@@ -101,28 +101,28 @@ badgeForm.addEventListener('submit', (e) => {
 		//	textalign = 'right';
 		//}
         // Add text to the badge
-		document.fonts.load('1000 36px Montserrat').then(() => {
-			ctx.font = '1000 36px Montserrat';
+		document.fonts.load('600 22px Montserrat').then(() => {
+			ctx.font = '600 22px Montserrat';
             ctx.fillStyle = namefontcolor;
             ctx.textAlign = 'center'; // Options: 'left', 'right', 'center'
-            ctx.fillText(name.toUpperCase(), textx, 480);
-			ctx.fillStyle = titlefontcolor;
-			ctx.font = '700 26px Montserrat';
-            ctx.fillText(title.toUpperCase(), textx, 510);
+            ctx.fillText(name.toUpperCase(), textx, 120);
+			//ctx.fillStyle = titlefontcolor;
+			//ctx.font = '700 26px Montserrat';
+            //ctx.fillText(title.toUpperCase(), textx, 510);
 			
-            ctx.font = '1000 52px Montserrat';
-            ctx.fillText('I AM', 124, 561);
+            //ctx.font = '1000 52px Montserrat';
+           // ctx.fillText('I AM', 124, 561);
             
-            if (role == 'PRESENTING' || role == 'TALKING'){
-                ctx.font = '1000 52px Montserrat';
-                ctx.fillText('AT', 275, 679);}
+           // if (role == 'PRESENTING' || role == 'TALKING'){
+           //     ctx.font = '1000 52px Montserrat';
+           //     ctx.fillText('AT', 275, 679);}
             
-            ctx.font = '1000 68px Montserrat';
-            ctx.fillText('WSW', 430, 690);
+           // ctx.font = '1000 68px Montserrat';
+           // ctx.fillText('WSW', 430, 690);
 
 
-            ctx.font = '1000 68px Montserrat';
-            ctx.fillText(role, textx, 625);
+           // ctx.font = '1000 68px Montserrat';
+           // ctx.fillText(role, textx, 625);
 
 			//ctx.font = '24px Montserrat';
             //ctx.fillStyle = 'red';
@@ -148,8 +148,8 @@ badgeForm.addEventListener('submit', (e) => {
 
                 cropBtn.addEventListener('click', () => {
                     const croppedCanvas = cropper.getCroppedCanvas({
-                        width: 300,
-                        height: 300,
+                        width: 550,
+                        height: 550,
                     });
 
                     const croppedImage = new Image();

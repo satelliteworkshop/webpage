@@ -23,6 +23,11 @@
     <link rel="stylesheet" href="assets/css/main_updated.css">
     <!-- endinject -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+  .hidden-field {
+    display: none;
+  }
+</style>
 
 </head>
 <body>
@@ -77,7 +82,7 @@
         </div>
         <div class="container u-vCenter- u-PaddingTop90 u-sm-PaddingTop30 u-PaddingBottom30 u-sm-PaddingBottom30">
             <div class="col-md-8 text-white">
-				<h3 class="u-FontSize75 u-xs-FontSize40 u-Weight600 u-MarginTop0 u-xs-MarginTop30 u-MarginBottom0 text-white">Digital badge</h3>
+				<h3 class="u-FontSize75 u-xs-FontSize40 u-Weight600 u-MarginTop0 u-xs-MarginTop30 u-MarginBottom0 text-white"></h3>
             </div>
 
         </div>
@@ -91,10 +96,11 @@
     <section class="u-PaddingTop30 u-PaddingBottom300  u-xs-PaddingBottom30 u-xs-PaddingTop30 u-sm-PaddingTop50 u-sm-PaddingBottom50 u-MarginBottom0 u-zIndex10 position-relative">
         <div class="container">
             <div class="row">
-                <div class="col-sm-5">
+                <div class="col-sm-4">
 					<h2>Example</h2>
-				   <p><img class="img-responsive" src="assets/imgs/badge/examplebadge_light.png" alt=""/></p>
-                   <p><img class="img-responsive" src="assets/imgs/badge/examplebadge_dark.png" alt=""/></p>
+				   <p><img class="img-responsive" src="assets/imgs/badge/examplebadge_dark.png" alt=""/></p>
+                    <p><img class="img-responsive" src="assets/imgs/badge/examplebadge_light.png" alt=""/></p>
+                   
 			</p>
 
                 </div>
@@ -102,25 +108,26 @@
 	<div class="col-sm-7">
                         
 
-    <h2>Generate your badge for social media</h2>
+    <h2>Generate a favorite moment card for social media</h2>
     <div id="inputForm" style="display:block;">
-	<p> Give your name and affiliation </p>
+	<!-- <p> Give your name and affiliation </p> -->
+
 	<form id="badgeForm">
-        <label for="name">Name:</label>
+        <label for="name">Text label for your favourite moment:</label>
         <input type="text" id="name" name="name" required><br><br>
 
-        <label for="title">Organisation:</label>
-        <input type="text" id="title" name="title"><br><br>
+        <label class="hidden-field" for="title">Organisation:</label> 
+        <input class="hidden-field" type="text" id="title" name="title"><br><br>
 
-        <label for="imageUpload">You can upload and crop your photo.</label>
+        <label for="imageUpload">Upload and crop your favourite moment photo.</label>
         <input type="file" id="imageUpload" name="imageUpload" accept="image/*">
-        <br>
+    
 		
-            <label for="roleTxt">Select text about your role</label> 
-		    <input type="radio" name="roleTxt" value="ATTENDING" checked> Attending
-		    <input type="radio" name="roleTxt" value="PRESENTING"> Presenting
-            <input type="radio" name="roleTxt" value="TALKING"> Talking
-            <input type="radio" name="roleTxt" value="ORGANIZING"> Organizing
+            <label class="hidden-field" for="roleTxt">Select text about your role</label> 
+		    <input class="hidden-field" type="radio" name="roleTxt" value="ATTENDING" checked> <!-- Attending -->
+		    <input class="hidden-field" type="radio" name="roleTxt" value="PRESENTING"> <!--Presenting-->
+            <input class="hidden-field" type="radio" name="roleTxt" value="TALKING"> <!--Talking-->
+            <input class="hidden-field" type="radio" name="roleTxt" value="ORGANIZING"> <!--Organizing-->
 		<br>
 
             <label for="colorTheme">Select Color theme</label> 
