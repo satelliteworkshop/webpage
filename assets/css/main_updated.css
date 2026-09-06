@@ -6707,3 +6707,315 @@ div[class*=col-].media-left {
     }
 }
 
+/* ==========================================================
+   WSW PHOTO DIVIDER
+   Six photographs scattered like prints on a table
+   ========================================================== */
+
+
+/* ----------------------------------------------------------
+   Whole divider area
+   ---------------------------------------------------------- */
+
+.photo-divider {
+    width: 100%;
+    height: 400px;
+
+    overflow: hidden;
+
+    margin: 30px 0 30px;
+
+    display: flex;
+    align-items: center;
+}
+
+
+/* ----------------------------------------------------------
+   Track containing all photographs
+   ---------------------------------------------------------- */
+
+.photo-divider-track {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: max-content;
+    min-width: 100%;
+}
+
+
+/* ----------------------------------------------------------
+   Physical "paper photograph"
+   
+   IMPORTANT:
+   Width belongs to the PAPER.
+   Image inside automatically follows that width.
+   Height is determined by the image aspect ratio.
+   ---------------------------------------------------------- */
+
+.history-photo {
+    flex: 0 0 auto;
+
+    /* Normal print width */
+    width: 230px;
+
+    /*
+       Negative margin makes neighbouring photographs overlap.
+       Increase to -30px for more overlap.
+       Reduce to -10px for less overlap.
+    */
+    margin: 0 -22px;
+
+    /*
+       Paper border:
+       7px sides/top
+       29px bottom for the year
+    */
+    padding: 7px 7px 29px;
+
+    background: #faf9f5;
+
+    /*
+       Border is optional, but this very subtle one helps
+       against white page backgrounds.
+    */
+    border: 1px solid rgba(0, 0, 0, 0.06);
+
+    box-shadow:
+        0 5px 14px rgba(0, 0, 0, 0.18),
+        0 1px 3px rgba(0, 0, 0, 0.12);
+
+    position: relative;
+
+    box-sizing: border-box;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+/* ----------------------------------------------------------
+   Actual photograph
+
+   No fixed height!
+   The original crop/aspect ratio determines the height.
+   ---------------------------------------------------------- */
+
+.history-photo img {
+    width: 100%;
+    height: auto;
+
+    display: block;
+
+    /*
+       IMPORTANT:
+       No object-fit is necessary because we are NOT
+       forcing the image into a fixed-size rectangle.
+    */
+}
+
+
+/* ----------------------------------------------------------
+   Year printed in lower paper margin
+   ---------------------------------------------------------- */
+
+.history-photo figcaption {
+    position: absolute;
+
+    left: 7px;
+    right: 7px;
+    bottom: 6px;
+
+    text-align: center;
+
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+
+    color: #444;
+
+    line-height: 16px;
+}
+
+
+/* ==========================================================
+   SIX INDIVIDUAL PHOTOGRAPHS
+   Different widths, positions and rotations create
+   the "scattered on a table" appearance.
+   ========================================================== */
+
+
+/* Photo 1 */
+
+.history-photo:nth-child(1) {
+    width: 225px;
+
+    transform:
+        translateY(18px)
+        rotate(-4deg);
+
+    z-index: 1;
+}
+
+
+/* Photo 2 */
+
+.history-photo:nth-child(2) {
+    width: 210px;
+
+    transform:
+        translateY(-14px)
+        rotate(2.8deg);
+
+    z-index: 3;
+}
+
+
+/* Photo 3 */
+
+.history-photo:nth-child(3) {
+    width: 250px;
+
+    transform:
+        translateY(15px)
+        rotate(-1.5deg);
+
+    z-index: 2;
+}
+
+
+/* Photo 4 */
+
+.history-photo:nth-child(4) {
+    width: 220px;
+
+    transform:
+        translateY(-17px)
+        rotate(3.5deg);
+
+    z-index: 4;
+}
+
+
+/* Photo 5 */
+
+.history-photo:nth-child(5) {
+    width: 240px;
+
+    transform:
+        translateY(17px)
+        rotate(-2.8deg);
+
+    z-index: 2;
+}
+
+
+/* Photo 6 */
+
+.history-photo:nth-child(6) {
+    width: 225px;
+
+    transform:
+        translateY(-8px)
+        rotate(2deg);
+
+    z-index: 1;
+}
+
+
+/* ==========================================================
+   HOVER
+   Straightens and raises photograph
+   ========================================================== */
+
+.history-photo:hover {
+    transform:
+        translateY(0)
+        rotate(0deg)
+        scale(1.07);
+
+    z-index: 20;
+
+    box-shadow:
+        0 12px 28px rgba(0, 0, 0, 0.25),
+        0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+
+/* ==========================================================
+   MOBILE
+   Horizontal scrolling rather than squeezing photographs
+   ========================================================== */
+
+@media (max-width: 800px) {
+
+    .photo-divider {
+        height: 250px;
+
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        margin: 35px 0 45px;
+
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .photo-divider::-webkit-scrollbar {
+        display: none;
+    }
+
+    .photo-divider-track {
+        justify-content: flex-start;
+
+        min-width: max-content;
+
+        padding: 0 35px;
+    }
+
+    .history-photo {
+        /*
+           Slightly less overlap on small screens
+        */
+        margin-left: -14px;
+        margin-right: -14px;
+    }
+
+    .history-photo:nth-child(1) {
+        width: 190px;
+    }
+
+    .history-photo:nth-child(2) {
+        width: 180px;
+    }
+
+    .history-photo:nth-child(3) {
+        width: 205px;
+    }
+
+    .history-photo:nth-child(4) {
+        width: 185px;
+    }
+
+    .history-photo:nth-child(5) {
+        width: 200px;
+    }
+
+    .history-photo:nth-child(6) {
+        width: 190px;
+    }
+}
+
+
+/* ==========================================================
+   ACCESSIBILITY
+   Remove animation for users requesting reduced motion
+   ========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .history-photo {
+        transition: none;
+    }
+}
