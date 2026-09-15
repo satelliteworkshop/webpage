@@ -466,6 +466,18 @@ a:hover {
     padding: 20px;
 }
 
+.gold-logo-high {
+    max-width: 150px;
+    max-height: 150px;
+    padding: 20px;
+}
+
+.gold-logo-wide {
+    max-width: 250px;
+    max-height: 100px;
+    padding: 20px;
+}
+
 .Split {
     display: inline-block;
     width: 40px;
