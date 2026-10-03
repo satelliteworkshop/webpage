@@ -138,12 +138,16 @@ badgeForm.addEventListener('submit', (e) => {
     const title = document.getElementById('title').value;
     const url = document.getElementById('url').value;
     const imageUpload = document.getElementById('imageUpload').files[0];
-    const selectTheme = document.querySelector('input[name="colorTheme"]:checked').value;
+    let selectTheme = document.querySelector('input[name="colorTheme"]:checked').value;
     const role = document.querySelector('input[name="roleTxt"]:checked').value;
 	let textx = 300;
 	let textalign = 'center';
 
     inputForm.style.display = 'none';
+
+    if (role === 'KEYNOTE') {
+    selectTheme = 'light';
+}
 
     // CREATE LINKEDIN TEXT HERE
 
