@@ -98,8 +98,7 @@
             <div class="row">
                 <div class="col-sm-4">
 					<h2>Example</h2>
-				   <p><img class="img-responsive" src="assets/imgs/badge/examplebadge_dark.png" alt=""/></p>
-                    <p><img class="img-responsive" src="assets/imgs/badge/examplebadge_light.png" alt=""/></p>
+				   <p><img class="img-responsive" src="assets/imgs/badge/examplebadge_2027.png" alt=""/></p>
                    
 			</p>
 
@@ -108,31 +107,35 @@
 	<div class="col-sm-7">
                         
 
-    <h2>Generate a favorite moment card for social media</h2>
+    <h2>Generate badge for social media</h2>
     <div id="inputForm" style="display:block;">
 	<!-- <p> Give your name and affiliation </p> -->
 
 	<form id="badgeForm">
-        <label for="name">Text label for your favourite moment:</label>
+        <label for="name">Name:</label>
         <input type="text" id="name" name="name" required><br><br>
 
-        <label class="hidden-field" for="title">Organisation:</label> 
-        <input class="hidden-field" type="text" id="title" name="title"><br><br>
+        <label class="" for="org">Organisation:</label> 
+        <input class="" type="text" id="org" name="org"><br><br>
 
-        <label for="imageUpload">Upload and crop your favourite moment photo.</label>
+        <label class="" for="title"></label> 
+        <textarea class="hidden" type="text" id="title" name="title" rows="3" cols="50"></textarea> <br><br>
+        <input class="hidden" type="text" id="url" name="url">
+
+        <label for="imageUpload">Upload your photo.</label>
         <input type="file" id="imageUpload" name="imageUpload" accept="image/*">
     
 		
-            <label class="hidden-field" for="roleTxt">Select text about your role</label> 
-		    <input class="hidden-field" type="radio" name="roleTxt" value="ATTENDING" checked> <!-- Attending -->
-		    <input class="hidden-field" type="radio" name="roleTxt" value="PRESENTING"> <!--Presenting-->
-            <input class="hidden-field" type="radio" name="roleTxt" value="TALKING"> <!--Talking-->
-            <input class="hidden-field" type="radio" name="roleTxt" value="ORGANIZING"> <!--Organizing-->
+            <label class="" for="roleTxt">Select text about your role</label> <br>
+		    <input class="" type="radio" name="roleTxt" value="ATTENDING" checked> Attending <br><!-- Attending -->
+		    <input class="" type="radio" name="roleTxt" value="PRESENTING"> Presenting <br><!--Presenting-->
+            <input class="hidden" type="radio" name="roleTxt" value="KEYNOTE"> <!--Keynote-->
+            <input class="" type="radio" name="roleTxt" value="ORGANIZING"> Organizing <br><!--Organizing-->
 		<br>
 
-            <label for="colorTheme">Select Color theme</label> 
-		    <input type="radio" name="colorTheme" value="light" checked> Light
-		    <input type="radio" name="colorTheme" value="dark"> Dark
+            <label class="hidden" for="colorTheme">Select Color theme</label> 
+		    <input class="hidden" type="radio" name="colorTheme" value="light"> 
+		    <input class="hidden" type="radio" name="colorTheme" value="dark" checked> 
         <br>
 
 
@@ -155,15 +158,39 @@
     <button id="downloadBtn" hidden>Download Badge</button>
     
     </p>
-    <script src="https://cdn.jsdelivr.net/npm/cropperjs@1.5.13/dist/cropper.min.js"></script>
-    <script src="badgegenerator.js"></script>
+
 	
-	<p>The downloaded badge is saved to your Downloads folder. Find it there and post to LinkeIn or other channels. Please use hashtag #WinterSatelliteWorkshop in social media! </p>
+	
+
+                        <div id="linkedinShare" hidden>
+
+                            <p>Push "Download Badge", then "Copy post text" and then "Open LinkedIn". You can finish the post by editing the
+                                text and uploading the badge, which is now in your downloads folder.</p>
+
+                            <label for="linkedinText">Suggested LinkedIn post:</label>
+
+                            <textarea id="linkedinText" rows="8" style="width:100%;"></textarea>
+
+                            <br>
+
+                            <button type="button" id="copyLinkedInBtn">
+                                Copy post text
+                            </button>
+
+                            <button type="button" id="openLinkedInBtn">
+                                Open LinkedIn
+                            </button>
+
+                        </div>
 
                 </div>
 
             </div>
         </div>
+
+
+
+        
     </section>
     <!--about end-->
 
@@ -209,6 +236,10 @@
 	<script src="https://www.w3schools.com/lib/w3.js"></script>
 
     <!-- endinject -->
+
+
+    <script src="https://cdn.jsdelivr.net/npm/cropperjs@1.5.13/dist/cropper.min.js"></script>
+    <script src="badgegenerator.js"></script>
 
 </body>
 </html>
