@@ -163,7 +163,7 @@ badgeForm.addEventListener('submit', (e) => {
          const linkedinText =
         `I'm attending Winter Satellite Workshop 2027!\n\n` +
         `See you in Finland!\n` +
-        `#WinterSatelliteWorkshop #WSW2027`;
+        `WSW is the largest Nordic space spacialist gathering - bringing together industry, policy, science and students`;
         document.getElementById('linkedinText').value = linkedinText;
 
     }
