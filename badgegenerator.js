@@ -46,45 +46,45 @@ if (params.get('role')) {
 
 // rounded rect for image crop on the badge
 function clipRoundRectPath(ctx, x, y, w, h, r) {
-  const radius = Math.min(r, w / 2, h / 2);
-  ctx.beginPath();
-  ctx.moveTo(x + radius, y);
-  ctx.lineTo(x + w - radius, y);
-  ctx.quadraticCurveTo(x + w, y, x + w, y + radius);
-  ctx.lineTo(x + w, y + h - radius);
-  ctx.quadraticCurveTo(x + w, y + h, x + w - radius, y + h);
-  ctx.lineTo(x + radius, y + h);
-  ctx.quadraticCurveTo(x, y + h, x, y + h - radius);
-  ctx.lineTo(x, y + radius);
-  ctx.quadraticCurveTo(x, y, x + radius, y);
-  ctx.closePath();
-  ctx.clip();
+    const radius = Math.min(r, w / 2, h / 2);
+    ctx.beginPath();
+    ctx.moveTo(x + radius, y);
+    ctx.lineTo(x + w - radius, y);
+    ctx.quadraticCurveTo(x + w, y, x + w, y + radius);
+    ctx.lineTo(x + w, y + h - radius);
+    ctx.quadraticCurveTo(x + w, y + h, x + w - radius, y + h);
+    ctx.lineTo(x + radius, y + h);
+    ctx.quadraticCurveTo(x, y + h, x, y + h - radius);
+    ctx.lineTo(x, y + radius);
+    ctx.quadraticCurveTo(x, y, x + radius, y);
+    ctx.closePath();
+    ctx.clip();
 }
 
 // rounded rect for image crop on the badge
 function clipCircle(ctx, cx, cy, radius) {
-  ctx.beginPath();
-  ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-  ctx.closePath();
-  ctx.clip();
+    ctx.beginPath();
+    ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.clip();
 }
 
 function drawImageInSlot(ctx, img, slot, shape = "roundRect") {
-  ctx.save();
+    ctx.save();
 
-  if (shape === "circle") {
-    clipCircle(
-      ctx,
-      slot.x + slot.w / 2,
-      slot.y + slot.h / 2,
-      slot.w / 2
-    );
-  } else {
-    clipRoundRectPath(ctx, slot.x, slot.y, slot.w, slot.h, slot.r);
-  }
+    if (shape === "circle") {
+        clipCircle(
+            ctx,
+            slot.x + slot.w / 2,
+            slot.y + slot.h / 2,
+            slot.w / 2
+        );
+    } else {
+        clipRoundRectPath(ctx, slot.x, slot.y, slot.w, slot.h, slot.r);
+    }
 
-  ctx.drawImage(img, slot.x, slot.y, slot.w, slot.h);
-  ctx.restore();
+    ctx.drawImage(img, slot.x, slot.y, slot.w, slot.h);
+    ctx.restore();
 }
 
 
@@ -122,16 +122,16 @@ let orgfontcolor = '#FFFFFF';
 let titlefontcolor = '#FFFFFF';
 
 const photoSlot = {
-  x: 150,
-  y: 130,
-  w: 300,
-  h: 300,
-  r: 34
+    x: 150,
+    y: 130,
+    w: 300,
+    h: 300,
+    r: 34
 };
 
 // Form submit event
 badgeForm.addEventListener('submit', (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
     const name = document.getElementById('name').value;
     const org = document.getElementById('org').value;
@@ -140,89 +140,99 @@ badgeForm.addEventListener('submit', (e) => {
     const imageUpload = document.getElementById('imageUpload').files[0];
     let selectTheme = document.querySelector('input[name="colorTheme"]:checked').value;
     const role = document.querySelector('input[name="roleTxt"]:checked').value;
-	let textx = 300;
-	let textalign = 'center';
+    let textx = 300;
+    let textalign = 'center';
 
     inputForm.style.display = 'none';
 
     if (role === 'KEYNOTE') {
-    selectTheme = 'light';
-}
+        selectTheme = 'light';
+    }
 
     // CREATE LINKEDIN TEXT HERE
 
-    if(title){  
-    const linkedinText =
-        `I'm presenting at Winter Satellite Workshop 2027!\n\n` +
-        `${title}\n` +
-        `Read my abstract:\n${url}\n` +
-        `#WinterSatelliteWorkshop #WSW2027`;
+    if (title) {
+        const linkedinText =
+            `I'm presenting at Winter Satellite Workshop 2027!\n\n` +
+            `${title}\n` +
+            `Read my abstract:\n${url}\n` +
+            `#WinterSatelliteWorkshop #WSW2027`;
         document.getElementById('linkedinText').value = linkedinText;
 
-    } else { 
-         const linkedinText =
-        `I'm attending Winter Satellite Workshop 2027!\n\n` +
-        `See you in Finland!\n` +
-        `WSW is the largest Nordic space spacialist gathering - bringing together industry, policy, science and students`;
+    } else {
+        const linkedinText =
+            `I'm attending Winter Satellite Workshop 2027!\n\n` +
+            `See you in Finland!\n` +
+            `WSW is the largest Nordic space spacialist gathering - bringing together industry, policy, science and students`;
         document.getElementById('linkedinText').value = linkedinText;
 
     }
-    
-	
-	
-	// Draw the badge template
+
+
+
+    // Draw the badge template
     const templateImage = new Image();
     templateImage.crossOrigin = 'anonymous'; // Enable CORS for the template image
-	
-	 if (selectTheme === 'dark'){
-		templateImage.src = 'template_dark.png';
-		namefontcolor = '#FFFFFF';
+
+    if (selectTheme === 'dark') {
+        templateImage.src = 'template_dark.png';
+        namefontcolor = '#FFFFFF';
         titlefontcolor = '#98bdf4';
         orgfontcolor = '#FFFFFF';
- 	 } else {
-		 templateImage.src = 'template_light.png';
-		namefontcolor = '#201B50';
+    } else {
+        templateImage.src = 'template_light.png';
+        namefontcolor = '#201B50';
         orgfontcolor = '#201B50';
         titlefontcolor = '#201B50';
-	 }
-		 
-	 
+    }
+
+
     templateImage.onload = function () {
         ctx.drawImage(templateImage, 0, 0, badgeCanvas.width, badgeCanvas.height);
-		//if (imageUpload) {
-		//	textx = 320;
-		//	textalign = 'right';
-		//}
+        //if (imageUpload) {
+        //	textx = 320;
+        //	textalign = 'right';
+        //}
         // Add text to the badge
-		document.fonts.load('600 36px Montserrat').then(() => {
-			ctx.font = '700 36px Montserrat';
+        document.fonts.load('600 36px Montserrat').then(() => {
+            ctx.font = '700 36px Montserrat';
             ctx.fillStyle = namefontcolor;
             ctx.textAlign = 'center'; // Options: 'left', 'right', 'center'
             ctx.fillText(name.toUpperCase(), textx, 480);
-			ctx.fillStyle = orgfontcolor;
-			ctx.font = '700 30px Montserrat';
+            ctx.fillStyle = orgfontcolor;
+            ctx.font = '700 30px Montserrat';
             ctx.fillText(org, textx, 510);
-			
-            
-            if(title){    
-            ctx.font = '1000 20px Montserrat';
-            ctx.fillText('I AM PRESENTING:', 124, 560);
-            ctx.font = '22px Montserrat';
-            ctx.fillStyle = titlefontcolor;
-            ctx.textAlign = 'center';
-            wrapText(ctx, title, textx, 600, 500, 30);
+
+            let result;
+
+                const slogan = ({
+                "KEYNOTE": "Join my keynote",
+                "ATTENDING": "I am joining",
+                "ORGANIZING": "I am organizing",
+                "PRESENTING": "I am presenting",
+                "EXPO": "Find our booth"
+                })[role] ?? "I am joining";
+
+
+            if (title) {
+                ctx.font = '1000 20px Montserrat';
+                ctx.fillText(slogan, 124, 560);
+                ctx.font = '22px Montserrat';
+                ctx.fillStyle = titlefontcolor;
+                ctx.textAlign = 'center';
+                wrapText(ctx, title, textx, 600, 500, 30);
             }
-            else{
-            ctx.font = '1000 44px Montserrat';
-            ctx.fillText('I AM', 124, 621);
-            ctx.font = '1000 60px Montserrat';
-            ctx.fillText(role, textx, 670);
+            else {
+                ctx.font = '1000 44px Montserrat';
+                //ctx.fillText('I am', 124, 621);
+                ctx.font = '1000 50px Montserrat';
+                ctx.fillText(slogan, textx, 620);
             }
 
 
 
 
-			});
+        });
 
         // If an image is uploaded, process it
         if (imageUpload) {
@@ -232,7 +242,7 @@ badgeForm.addEventListener('submit', (e) => {
             reader.onload = function (event) {
                 imagePreview.src = event.target.result;
                 cropContainer.style.display = 'block'; // Show the cropping container
-				
+
 
                 // Initialize Cropper.js on the uploaded image
                 cropper = new Cropper(imagePreview, {
@@ -251,13 +261,13 @@ badgeForm.addEventListener('submit', (e) => {
 
                     croppedImage.onload = function () {
                         // Draw the cropped image on the canvas
-                       
+
                         drawImageInSlot(ctx, croppedImage, photoSlot, "roundRect");
                         // Show the canvas and download button
                         badgeCanvas.hidden = false;
                         downloadBtn.hidden = false;
                         cropContainer.style.display = 'none';
-                        
+
                     };
                 });
             };
@@ -266,7 +276,7 @@ badgeForm.addEventListener('submit', (e) => {
             badgeCanvas.hidden = false;
             downloadBtn.hidden = false;
             document.getElementById('linkedinShare').hidden = false;
-            
+
         }
     };
 });
