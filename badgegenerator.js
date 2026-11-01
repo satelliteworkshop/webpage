@@ -266,6 +266,7 @@ badgeForm.addEventListener('submit', (e) => {
                         // Show the canvas and download button
                         badgeCanvas.hidden = false;
                         downloadBtn.hidden = false;
+                        document.getElementById('linkedinShare').hidden = false;
                         cropContainer.style.display = 'none';
 
                     };
